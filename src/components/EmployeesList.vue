@@ -17,6 +17,7 @@
     <table>
       <thead>
         <tr>
+          <th>№</th>
           <th>Name</th>
           <th>Surname</th>
           <th>Experience (years)</th>
@@ -27,6 +28,9 @@
       </thead>
       <tbody>
         <tr v-for="(employee, index) in employees" :key="employee.id">
+          <td>
+            {{ employees.indexOf(employee) + 1 }}
+          </td>
           <td>
             <input :class="{'err': hasErr && !employee.name}" v-if="employee.inputState" type="text" v-model="employee.name" @focus.prevent="removeErr">
             <div v-else>{{employee.name}}</div>
