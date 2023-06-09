@@ -7,11 +7,11 @@
     </div>
     
     <div v-if="adding" class="add-employee-form">
-      <input type="text" v-model="newEmployee.name" placeholder = "Name">
-      <input type="text" v-model="newEmployee.surname" placeholder = "Surname">
-      <input type="number" v-model="newEmployee.experience" placeholder = "Experience">
-      <input type="number" v-model="newEmployee.age" placeholder = "Age">
-      <input type="text" v-model="newEmployee.adress" placeholder = "Adress">
+      <input :class="{'err': hasErr && !newEmployee.name}" type="text" v-model="newEmployee.name" placeholder = "Name" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && !newEmployee.surname}" type="text" v-model="newEmployee.surname" placeholder = "Surname" @focus.prevent="removeErr">
+      <input :class="{'err': (hasErr && newEmployee.experience < 0) || (hasErr && newEmployee.experience == null)}" type="number" v-model="newEmployee.experience" placeholder = "Experience" @focus.prevent="removeErr">
+      <input :class="{'err': (hasErr && newEmployee.age < 0) || (hasErr && newEmployee.age == null)}" type="number" v-model="newEmployee.age" placeholder = "Age" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && !newEmployee.adress}" type="text" v-model="newEmployee.adress" placeholder = "Adress" @focus.prevent="removeErr">
       <button @click="saveEmployee" class="btn btn-primary">Save Employee</button>
     </div>
     <table>
@@ -26,34 +26,31 @@
         </tr>
       </thead>
       <tbody>
-        <tr 
-          v-for="(employee, index) in employees"
-          :key="JSON.stringify(employee)"
-        >
+        <tr v-for="(employee, index) in employees" :key="employee.id">
           <td>
-            <input v-if="employee.inputState" type="text" v-model="employee.name">
+            <input :class="{'err': hasErr && !employee.name}" v-if="employee.inputState" type="text" v-model="employee.name" @focus.prevent="removeErr">
             <div v-else>{{employee.name}}</div>
           </td>
           <td>
-            <input v-if="employee.inputState" type="text" v-model="employee.surname">
+            <input :class="{'err': hasErr && !employee.surname}" v-if="employee.inputState" type="text" v-model="employee.surname" @focus.prevent="removeErr">
             <div v-else>{{employee.surname}}</div>
           </td>
           <td>
-            <input v-if="employee.inputState" type="number" v-model="employee.experience">
+            <input :class="{'err': (hasErr && employee.experience < 0) || (hasErr && employee.experience == null)}" v-if="employee.inputState" type="number" v-model="employee.experience" @focus.prevent="removeErr">
             <div v-else>{{employee.experience}}</div>
           </td>
           <td>
-            <input v-if="employee.inputState" type="number" v-model="employee.age">
+            <input :class="{'err': (hasErr && employee.age < 0) || (hasErr && employee.age == null)}" v-if="employee.inputState" type="number" v-model="employee.age" @focus.prevent="removeErr">
             <div v-else>{{employee.age}}</div>
           </td>
           <td>
-            <input v-if="employee.inputState" type="text" v-model="employee.adress">
+            <input :class="{'err': hasErr && !employee.adress}" v-if="employee.inputState" type="text" v-model="employee.adress" @focus.prevent="removeErr">
             <div v-else>{{employee.adress}}</div>
           </td>
           <td>
-            <button v-if="!employee.editing" @click="toggleEdit(employee)" class="btn btn-primary">Edit</button>  
-            <button v-if="!employee.editing" @click="removeEmployee(index)" class="btn btn-danger" >Remove</button>
-            <button v-if="employee.editing" @click="toggleEdit(employee)" class="btn btn-primary">Save</button>
+            <button v-if="!employee.editing" @click="doEdit(employee)" class="btn btn-primary">Edit</button>  
+            <button v-if="!employee.editing" @click="removeEmployee(index)" class="btn btn-danger">Remove</button>
+            <button v-if="employee.editing" @click="saveEdit(employee)" class="btn btn-primary">Save</button>
             <button v-if="employee.editing" @click="cancelEdit(employee)" class="btn btn-danger">Cancel</button>         
           </td>
         </tr>
@@ -70,18 +67,24 @@
           adding: false,
           newEmployee: {},
           employees: [
-            {name: 'John', surname: 'Steele', experience: 4, age: 26, adress: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
-            {name: 'Ann', surname: 'Cooper', experience: 5, age: 28, adress: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
-            {name: 'Derrick', surname: 'Johnston', experience: 2, age: 23, adress: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
+            {id: 1, name: 'John', surname: 'Steele', experience: 4, age: 26, adress: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
+            {id: 2, name: 'Ann', surname: 'Cooper', experience: 5, age: 28, adress: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
+            {id: 3, name: 'Derrick', surname: 'Johnston', experience: 2, age: 23, adress: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
           ],
           employeeBackup: null, // property to hold the original employee data
+          hasErr: false,
         }
       },
       computed: {
       },
       methods: {
         saveEmployee(){
+          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.age < 0 || !this.newEmployee.age) {
+            this.hasErr = true;
+            return
+          }
           this.employees.push({
+            id: this.employees[this.employees.length - 1].id + 1,
             name: this.newEmployee.name,
             surname: this.newEmployee.surname,
             experience: this.newEmployee.experience,
@@ -90,23 +93,39 @@
           });
           this.newEmployee = {};
         },
+        removeErr() {
+          if(this.hasErr) this.hasErr = false;
+        },
         removeEmployee(index) {
+          this.toggleAdding();
           this.employees.splice(index, 1);
         },
         toggleAdding(adding){
           this.adding = adding;
+          this.removeErr();
           this.newEmployee = {};
         },
-        toggleEdit(employee) {    
+        saveEdit(employee) {  
+          if (!employee.name || !employee.surname || !employee.experience || !employee.age || !employee.age) {
+            this.hasErr = true;
+            return
+          }
+          employee.editing = !employee.editing;
+          employee.inputState = !employee.inputState;
+        },
+        doEdit(employee) {
           if (!employee.editing) { // if we start editing
             this.employeeBackup = { ...employee }; // create a copy
           } else { // if we finish editing
             this.employeeBackup = null; // clear the copy
           }
+          this.toggleAdding();
+          this.removeErr();
           employee.editing = !employee.editing;
           employee.inputState = !employee.inputState;
         },
         cancelEdit(employee) {
+          this.removeErr();
           const index = this.employees.indexOf(employee);
           if (index !== -1 && this.employeeBackup) {
             this.employees.splice(index, 1, this.employeeBackup);
@@ -150,7 +169,7 @@
     justify-content: space-between;
   }
 
-  .add-employee-form input {
+  input {
     width: 70%;
     border-radius: 3px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -161,6 +180,9 @@
     font-size: 1rem;
     letter-spacing: 0.5px;
     margin: 0.5rem 0;
+  }
+  .err {
+    border: 1px solid red;
   }
 
   .btn {
@@ -200,11 +222,5 @@
   .btn-danger:hover {
     background: #e3342f;
     color: #fff;
-  }
-
-  input[type="checkbox"]{
-    display: inline !important;
-    box-shadow: none;
-    width: auto;
   }
 </style>
