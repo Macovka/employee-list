@@ -9,8 +9,8 @@
     <div v-if="adding" class="add-employee-form">
       <input :class="{'err': hasErr && !newEmployee.name}" type="text" v-model="newEmployee.name" placeholder = "Name" @focus.prevent="removeErr">
       <input :class="{'err': hasErr && !newEmployee.surname}" type="text" v-model="newEmployee.surname" placeholder = "Surname" @focus.prevent="removeErr">
-      <input :class="{'err': (hasErr && newEmployee.experience < 0) || (hasErr && newEmployee.experience == null)}" type="number" v-model="newEmployee.experience" placeholder = "Experience" @focus.prevent="removeErr">
-      <input :class="{'err': (hasErr && newEmployee.age < 0) || (hasErr && newEmployee.age == null)}" type="number" v-model="newEmployee.age" placeholder = "Age" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience == null)}" type="number" v-model="newEmployee.experience" placeholder = "Experience" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age == null)}" type="number" v-model="newEmployee.age" placeholder = "Age" @focus.prevent="removeErr">
       <input :class="{'err': hasErr && !newEmployee.adress}" type="text" v-model="newEmployee.adress" placeholder = "Adress" @focus.prevent="removeErr">
       <button @click="saveEmployee" class="btn btn-primary">Save Employee</button>
     </div>
@@ -40,11 +40,11 @@
             <div v-else>{{employee.surname}}</div>
           </td>
           <td>
-            <input :class="{'err': (hasErr && employee.experience < 0) || (hasErr && employee.experience == null)}" v-if="employee.inputState" type="number" v-model="employee.experience" @focus.prevent="removeErr">
+            <input :class="{'err': hasErr && (employee.experience < 0 || employee.experience === '')}" v-if="employee.inputState" type="number" v-model="employee.experience" @focus.prevent="removeErr">
             <div v-else>{{employee.experience}}</div>
           </td>
           <td>
-            <input :class="{'err': (hasErr && employee.age < 0) || (hasErr && employee.age == null)}" v-if="employee.inputState" type="number" v-model="employee.age" @focus.prevent="removeErr">
+            <input :class="{'err': hasErr && (employee.age < 0 || employee.age === '')}" v-if="employee.inputState" type="number" v-model="employee.age" @focus.prevent="removeErr">
             <div v-else>{{employee.age}}</div>
           </td>
           <td>
@@ -53,7 +53,7 @@
           </td>
           <td>
             <button v-if="!employee.editing" @click="doEdit(employee)" class="btn btn-primary">Edit</button>  
-            <button v-if="!employee.editing" @click="removeEmployee(index)" class="btn btn-danger">Remove</button>
+            <button v-if="!employee.editing" @click="removeEmployee(index)" class="btn btn-danger">Delete</button>
             <button v-if="employee.editing" @click="saveEdit(employee)" class="btn btn-primary">Save</button>
             <button v-if="employee.editing" @click="cancelEdit(employee)" class="btn btn-danger">Cancel</button>         
           </td>
@@ -83,7 +83,7 @@
       },
       methods: {
         saveEmployee(){
-          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.age < 0 || !this.newEmployee.age) {
+          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.age < 0 || !this.newEmployee.adress) {
             this.hasErr = true;
             return
           }
@@ -109,8 +109,8 @@
           this.removeErr();
           this.newEmployee = {};
         },
-        saveEdit(employee) {  
-          if (!employee.name || !employee.surname || !employee.experience || !employee.age || !employee.age) {
+        saveEdit(employee) { 
+          if (!employee.name || !employee.surname || employee.experience < 0 || employee.experience === '' || employee.age < 0 || employee.age === '' || !employee.adress) {
             this.hasErr = true;
             return
           }
