@@ -83,8 +83,7 @@
       },
       methods: {
         saveEmployee(){
-          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.experience === undefined || this.newEmployee.age < 0 || this.newEmployee.age === undefined || !this.newEmployee.adress) {
-            
+          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.experience === undefined || this.newEmployee.age < 0 || this.newEmployee.age === undefined || !this.newEmployee.adress) {           
             this.hasErr = true;
             return
           }
