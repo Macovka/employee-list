@@ -9,8 +9,8 @@
     <div v-if="adding" class="add-employee-form">
       <input :class="{'err': hasErr && !newEmployee.name}" type="text" v-model="newEmployee.name" placeholder = "Name" @focus.prevent="removeErr">
       <input :class="{'err': hasErr && !newEmployee.surname}" type="text" v-model="newEmployee.surname" placeholder = "Surname" @focus.prevent="removeErr">
-      <input :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience == null)}" type="number" v-model="newEmployee.experience" placeholder = "Experience" @focus.prevent="removeErr">
-      <input :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age == null)}" type="number" v-model="newEmployee.age" placeholder = "Age" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience === undefined)}" type="number" v-model="newEmployee.experience" placeholder = "Experience" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age === undefined)}" type="number" v-model="newEmployee.age" placeholder = "Age" @focus.prevent="removeErr">
       <input :class="{'err': hasErr && !newEmployee.adress}" type="text" v-model="newEmployee.adress" placeholder = "Adress" @focus.prevent="removeErr">
       <button @click="saveEmployee" class="btn btn-primary">Save Employee</button>
     </div>
@@ -27,7 +27,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(employee, index) in employees" :key="employee.id">
+        <tr id="row" v-for="(employee, index) in employees" :key="employee.id">
           <td>
             {{ employees.indexOf(employee) + 1 }}
           </td>
@@ -83,7 +83,8 @@
       },
       methods: {
         saveEmployee(){
-          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.age < 0 || !this.newEmployee.adress) {
+          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.experience === undefined || this.newEmployee.age < 0 || this.newEmployee.age === undefined || !this.newEmployee.adress) {
+            
             this.hasErr = true;
             return
           }
@@ -108,15 +109,7 @@
           this.adding = adding;
           this.removeErr();
           this.newEmployee = {};
-        },
-        saveEdit(employee) { 
-          if (!employee.name || !employee.surname || employee.experience < 0 || employee.experience === '' || employee.age < 0 || employee.age === '' || !employee.adress) {
-            this.hasErr = true;
-            return
-          }
-          employee.editing = !employee.editing;
-          employee.inputState = !employee.inputState;
-        },
+        },        
         doEdit(employee) {
           if (!employee.editing) { // if we start editing
             this.employeeBackup = { ...employee }; // create a copy
@@ -125,6 +118,14 @@
           }
           this.toggleAdding();
           this.removeErr();
+          employee.editing = !employee.editing;
+          employee.inputState = !employee.inputState;
+        },
+        saveEdit(employee) { 
+          if (!employee.name || !employee.surname || employee.experience < 0 || employee.experience === '' || employee.age < 0 || employee.age === '' || !employee.adress) {
+            this.hasErr = true;
+            return
+          }
           employee.editing = !employee.editing;
           employee.inputState = !employee.inputState;
         },
@@ -138,7 +139,15 @@
           employee.editing = !employee.editing;
           employee.inputState = !employee.inputState;
         },
-      }
+      },
+      /*watch() {
+        let row = document.getElementById('row')
+        row.addEventListener("focusout", (employee) => {
+          debugger; // eslint-disable-line no-debugger
+         employee.editing = !employee.editing
+        }
+        );
+      }*/
   }
 </script>
 <style scoped>
