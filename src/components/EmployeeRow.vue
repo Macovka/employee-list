@@ -75,6 +75,23 @@
       updateValue(field, value) {
         this.editedEmployee[field] = value;
       },
+      handleClickOutside(event) {
+        if (
+          event.target.tagName === 'BUTTON' &&
+          !this.$el.contains(event.target) &&
+          this.employee.editing
+        ) {
+          this.cancelEdit();
+        }
+      },
+    },
+    mounted() {
+      this.$nextTick(() => {
+        document.addEventListener('click', this.handleClickOutside, true);
+      });
+    },
+    beforeUnmount() {
+      document.removeEventListener('click', this.handleClickOutside, true);
     },
   };
 </script>
