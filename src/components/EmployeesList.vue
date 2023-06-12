@@ -1,8 +1,18 @@
 <template>
   <div id="employees-list">
     <h1 class="header">Employees List</h1>
-    <base-button v-if="!adding" @click="adding = !adding">Add Employee</base-button>
-    <employee-form v-if="adding" key="employee-form" @add="addEmployee" @cancel="adding = false" />
+    <base-button 
+      v-if="!adding" 
+      @click="adding = !adding"
+    >
+      Add Employee
+    </base-button>
+    <employee-form 
+      v-if="adding" 
+      key="employee-form" 
+      @add="addEmployee" 
+      @cancel="adding = false" 
+    />
     <employees-table
       :employees="employees"
       @edit="editEmployee"
@@ -33,9 +43,36 @@
           address: '',
         },
         employees: [
-          {id: 1, firstName: 'John', lastName: 'Steele', experience: 4, age: 26, address: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
-          {id: 2, firstName: 'Ann', lastName: 'Cooper', experience: 5, age: 28, address: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
-          {id: 3, firstName: 'Derrick', lastName: 'Johnston', experience: 2, age: 23, address: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
+          {
+            id: 1, 
+            firstName: 'John', 
+            lastName: 'Steele', 
+            experience: 4, 
+            age: 26, 
+            address: '905 Hannah Corners Adamsstad RM14 3PA', 
+            editing: false, 
+            inputState: false
+          },
+          {
+            id: 2, 
+            firstName: 'Ann', 
+            lastName: 'Cooper', 
+            experience: 5, 
+            age: 28, 
+            address: '5 Donna Station Ellisshire DE15 9DU', 
+            editing: false, 
+            inputState: false
+          },
+          {
+            id: 3, 
+            firstName: 'Derrick', 
+            lastName: 'Johnston', 
+            experience: 2, 
+            age: 23, 
+            address: '3 Zach Greens Jonesfort FK3 8EP', 
+            editing: false, 
+            inputState: false
+          },
         ],
       }
     },

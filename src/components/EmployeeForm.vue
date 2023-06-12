@@ -3,16 +3,32 @@
     <div class="modal-wrapper" @click="closeModal">
       <div class="modal-container">
         <h3>New Employee</h3>
-        <base-input :value="newEmployee.firstName" placeholder="First Name" type="text"
-          @input="updateValue('firstName', $event.target.value)" />
-        <base-input :value="newEmployee.lastName" placeholder="Last Name" type="text"
-          @input="updateValue('lastName', $event.target.value)" />
-        <base-input :value="newEmployee.experience" placeholder="Experience" type="number"
-          @input="updateValue('experience', $event.target.value)" />
-        <base-input :value="newEmployee.age" placeholder="Age" type="number"
-          @input="updateValue('age', $event.target.value)" />
-        <base-input :value="newEmployee.address" placeholder="Address" type="text"
-          @input="updateValue('address', $event.target.value)" />
+        <base-input 
+          :value="newEmployee.firstName" 
+          placeholder="First Name" type="text"
+          @input="updateValue('firstName', $event.target.value)" 
+        />
+        <base-input 
+          :value="newEmployee.lastName" 
+          placeholder="Last Name" 
+          type="text"
+          @input="updateValue('lastName', $event.target.value)" 
+          />
+        <base-input 
+          :value="newEmployee.experience" 
+          placeholder="Experience" type="number"
+          @input="updateValue('experience', $event.target.value)" 
+        />
+        <base-input 
+          :value="newEmployee.age" 
+          placeholder="Age" type="number"
+          @input="updateValue('age', $event.target.value)" 
+        />
+        <base-input 
+          :value="newEmployee.address" 
+          placeholder="Address" type="text"
+          @input="updateValue('address', $event.target.value)" 
+        />
         <base-button @click="addEmployee">Add</base-button>
         <base-button @click="cancelEdit">Cancel</base-button>
       </div>
@@ -35,7 +51,15 @@
     },
     methods: {
       addEmployee() {
-        if (!this.newEmployee.firstName || !this.newEmployee.lastName || this.newEmployee.experience < 0 || this.newEmployee.experience === '' || this.newEmployee.age < 0 || this.newEmployee.age === '' || !this.newEmployee.address) {
+        if (
+          !this.newEmployee.firstName || 
+          !this.newEmployee.lastName || 
+          this.newEmployee.experience < 0 || 
+          this.newEmployee.experience === '' || 
+          this.newEmployee.age < 0 || 
+          this.newEmployee.age === '' || 
+          !this.newEmployee.address
+        ) {
           return;
         }
         this.$emit('add', this.newEmployee);

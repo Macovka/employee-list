@@ -2,15 +2,45 @@
   <tr>
     <td>{{ index + 1 }}</td>
     <td v-if="!employee.editing">{{ employee.firstName }}</td>
-    <td v-else><base-input :value="editedEmployee.firstName" @input="updateValue('firstName', $event.target.value)" type="text" /></td>
+    <td v-else>
+      <base-input 
+        :value="editedEmployee.firstName" 
+        @input="updateValue('firstName', $event.target.value)" 
+        type="text" 
+      />
+    </td>
     <td v-if="!employee.editing">{{ employee.lastName }}</td>
-    <td v-else><base-input :value="editedEmployee.lastName" @input="updateValue('lastName', $event.target.value)" type="text" /></td>
+    <td v-else>
+      <base-input 
+        :value="editedEmployee.lastName" 
+        @input="updateValue('lastName', $event.target.value)" 
+        type="text" 
+      />
+    </td>
     <td v-if="!employee.editing">{{ employee.experience }} {{ unit(employee.experience) }}</td>
-    <td v-else><base-input :value="editedEmployee.experience" @input="updateValue('experience', $event.target.value)" type="number" /></td>
+    <td v-else>
+      <base-input 
+        :value="editedEmployee.experience" 
+        @input="updateValue('experience', $event.target.value)" 
+        type="number" 
+      />
+    </td>
     <td v-if="!employee.editing">{{ employee.age }} {{ unit(employee.age) }}</td>
-    <td v-else><base-input :value="editedEmployee.age" @input="updateValue('age', $event.target.value)" type="number" /></td>
+    <td v-else>
+      <base-input 
+        :value="editedEmployee.age" 
+        @input="updateValue('age', $event.target.value)" 
+        type="number" 
+      />
+    </td>
     <td v-if="!employee.editing">{{ employee.address }}</td>
-    <td v-else><base-input :value="editedEmployee.address" @input="updateValue('address', $event.target.value)" type="text" /></td>
+    <td v-else>
+      <base-input 
+        :value="editedEmployee.address" 
+        @input="updateValue('address', $event.target.value)" 
+        type="text" 
+      />
+    </td>
     <td>
       <div v-if="!employee.editing">
         <base-button @click="editEmployee">Edit</base-button>
@@ -58,7 +88,15 @@
         this.$emit('edit', this.employee);
       },
       saveEmployee() {
-        if (!this.editedEmployee.firstName || !this.editedEmployee.lastName || this.editedEmployee.experience < 0 || this.editedEmployee.experience === '' || this.editedEmployee.age < 0 || this.editedEmployee.age === '' || !this.editedEmployee.address) {
+        if (
+          !this.editedEmployee.firstName || 
+          !this.editedEmployee.lastName || 
+          this.editedEmployee.experience < 0 || 
+          this.editedEmployee.experience === '' || 
+          this.editedEmployee.age < 0 || 
+          this.editedEmployee.age === '' || 
+          !this.editedEmployee.address
+          ) {
           return;
         }
         this.$emit('save', this.employee, this.editedEmployee);
