@@ -2,23 +2,23 @@
   <tr>
     <td>{{ index + 1 }}</td>
     <td v-if="!employee.editing">{{ employee.name }}</td>
-    <td v-else><input v-model= "editedEmployee.name" type="text"></td>
+    <td v-else><base-input :value="editedEmployee.name" @input="updateValue('name', $event.target.value)" type="text" /></td>
     <td v-if="!employee.editing">{{ employee.surname }}</td>
-    <td v-else><input v-model="editedEmployee.surname" type="text"></td>
-    <td v-if="!employee.editing">{{ employee.experience }}</td>
-    <td v-else><input v-model="editedEmployee.experience" type="number"></td>
-    <td v-if="!employee.editing">{{ employee.age }}</td>
-    <td v-else><input v-model="editedEmployee.age" type="number"></td>
+    <td v-else><base-input :value="editedEmployee.surname" @input="updateValue('surname', $event.target.value)" type="text" /></td>
+    <td v-if="!employee.editing">{{ employee.experience }} {{ unit(employee.experience) }}</td>
+    <td v-else><base-input :value="editedEmployee.experience" @input="updateValue('experience', $event.target.value)" type="number" /></td>
+    <td v-if="!employee.editing">{{ employee.age }} {{ unit(employee.age) }}</td>
+    <td v-else><base-input :value="editedEmployee.age" @input="updateValue('age', $event.target.value)" type="number" /></td>
     <td v-if="!employee.editing">{{ employee.address }}</td>
-    <td v-else><input v-model="editedEmployee.address" type="text"></td>
+    <td v-else><base-input :value="editedEmployee.address" @input="updateValue('address', $event.target.value)" type="text" /></td>
     <td>
       <div v-if="!employee.editing">
-        <button @click="editEmployee">Edit</button>
-        <button @click="removeEmployee">Remove</button>
+        <base-button @click="editEmployee">Edit</base-button>
+        <base-button @click="removeEmployee">Remove</base-button>
       </div>
       <div v-else>
-        <button @click="saveEmployee">Save</button>     
-        <button @click="cancelEdit">Cancel</button>
+        <base-button @click="saveEmployee">Save</base-button>     
+        <base-button @click="cancelEdit">Cancel</base-button>
       </div>     
     </td>
   </tr>
@@ -68,6 +68,12 @@
       },
       cancelEdit() {
         this.$emit('cancel', this.employee);
+      },
+      unit(property) {
+        return property === '1' ? ' year' : ' years'
+      },
+      updateValue(field, value) {
+        this.editedEmployee[field] = value;
       },
     },
   };

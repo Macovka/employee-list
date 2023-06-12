@@ -1,12 +1,12 @@
 <template>
   <div>
-    <input v-model="newEmployee.name" placeholder="Name" type="text">
-    <input v-model="newEmployee.surname" placeholder="Surname" type="text">
-    <input v-model.number="newEmployee.experience" placeholder="Experience" type="number">
-    <input v-model.number="newEmployee.age" placeholder="Age" type="number">
-    <input v-model="newEmployee.address" placeholder="Address" type="text">
-    <button @click="addEmployee">Add</button>
-    <button @click="cancelEdit">Cancel</button>
+    <base-input v-model="newEmployee.name" placeholder="Name" type="text" />
+    <base-input v-model="newEmployee.surname" placeholder="Surname" type="text" />
+    <base-input v-model.number="newEmployee.experience" placeholder="Experience" type="number" />
+    <base-input v-model.number="newEmployee.age" placeholder="Age" type="number" />
+    <base-input v-model="newEmployee.address" placeholder="Address" type="text" />
+    <base-button @click="addEmployee">Add</base-button>
+    <base-button @click="cancelEdit">Cancel</base-button>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="employees-list">
     <h1 class="header">Employees List</h1>
-    <button v-if="!adding" @click="adding = !adding">{{ 'Add Employee' }}</button>
+    <base-button v-if="!adding" @click="adding = !adding">{{ 'Add Employee' }}</base-button>
     <div v-else>
       <employee-form @add="addEmployee" @cancel="adding = false" />
     </div>
