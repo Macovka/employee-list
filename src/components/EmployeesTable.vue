@@ -19,7 +19,7 @@
         :employees="employees"
         :index="index"
         @edit="$emit('edit', employee)"
-        @save="$emit('save', employee)"
+        @save="(editedEmployee, originalEmployee) => $emit('save', editedEmployee, originalEmployee)"
         @remove="$emit('remove', employee)"
         @cancel="$emit('cancel', employee)"
       />

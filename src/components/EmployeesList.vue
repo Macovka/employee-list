@@ -3,7 +3,7 @@
     <h1 class="header">Employees List</h1>
     <button v-if="!adding" @click="adding = !adding">{{ 'Add Employee' }}</button>
     <div v-else>
-      <employee-form :employee="newEmployee" @save="addEmployee" @cancel="adding = false" />
+      <employee-form :employee="newEmployee" @add="addEmployee" @cancel="adding = false" />
     </div>
     <employees-table
       :employees="employees"
@@ -64,11 +64,10 @@
       editEmployee(employee) {
         employee.editing = true;
       },
-      saveEmployee(employee) {
-        const index = this.employees.findIndex(e => e.id === employee.id);
+      saveEmployee(originalEmployee, editedEmployee) {
+        const index = this.employees.findIndex(e => e.id === originalEmployee.id);
         if (index !== -1) {
-          this.employees.splice(index, 1, employee);
-          employee.editing = false;
+          this.employees.splice(index, 1, { ...editedEmployee, editing: false });
         }
       },
       removeEmployee(employee) {
@@ -86,90 +85,3 @@
     },
   }
 </script>
-<style scoped>
-  #employees-list {
-    background: #fff;
-    padding: 2rem;
-    margin: 1rem;
-    border-radius: 3px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-    width: 95%;
-    max-width: 900px;
-  }
-
-  #employees-list > input,
-  #employees-list > select {
-    width: 100%;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    border: 1px solid #f1f5f8;
-    color: #606f7b;
-    padding: 0.5rem 0.75rem;
-    box-sizing: border-box;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    margin: 0.5rem 0;
-  }
-
-  .add-employee-form,
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  input {
-    width: 70%;
-    border-radius: 3px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    border: 1px solid #f1f5f8;
-    color: #606f7b;
-    padding: 0.5rem 0.75rem;
-    box-sizing: border-box;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    margin: 0.5rem 0;
-  }
-  .err {
-    border: 1px solid red;
-  }
-
-  .btn {
-    border: none;
-    border-radius: 3px;
-    margin: auto 0;
-    padding: 0.5rem 0.75rem;
-    flex-shrink: 0;
-    cursor: pointer;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    transition: all 0.1s ease-in;
-  }
-
-  .btn[disabled] {
-    background: #8795a1;
-  }
-
-  .btn[disabled]:hover {
-    background: #606f7b;
-  }
-
-  .btn-primary {
-    background: #6cb2eb;
-    color: #fff;
-  }
-
-  .btn-primary:hover {
-    background: #3490dc;
-  }
-
-  .btn-danger {
-    background: #ef5753;
-    color: #fff;
-  }
-
-  .btn-danger:hover {
-    background: #e3342f;
-    color: #fff;
-  }
-</style>
