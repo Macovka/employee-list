@@ -1,10 +1,10 @@
 <template>
   <div>
-    <base-input v-model="newEmployee.name" placeholder="Name" type="text" />
-    <base-input v-model="newEmployee.surname" placeholder="Surname" type="text" />
-    <base-input v-model.number="newEmployee.experience" placeholder="Experience" type="number" />
-    <base-input v-model.number="newEmployee.age" placeholder="Age" type="number" />
-    <base-input v-model="newEmployee.address" placeholder="Address" type="text" />
+    <base-input :value="newEmployee.name" placeholder="Name" type="text" @input="updateValue('name', $event.target.value)" />
+    <base-input :value="newEmployee.surname" placeholder="Surname" type="text" @input="updateValue('surname', $event.target.value)" />
+    <base-input :value="newEmployee.experience" placeholder="Experience" type="number" @input="updateValue('experience', $event.target.value)" />
+    <base-input :value="newEmployee.age" placeholder="Age" type="number" @input="updateValue('age', $event.target.value)" />
+    <base-input :value="newEmployee.address" placeholder="Address" type="text" @input="updateValue('address', $event.target.value)" />
     <base-button @click="addEmployee">Add</base-button>
     <base-button @click="cancelEdit">Cancel</base-button>
   </div>
@@ -32,6 +32,9 @@
       },
       cancelEdit() {
         this.$emit('cancel');
+      },
+      updateValue(field, value) {
+        this.newEmployee[field] = value;
       },
     },
   };
