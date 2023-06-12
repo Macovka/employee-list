@@ -2,6 +2,7 @@
   <div class="modal-mask">
     <div class="modal-wrapper" @click="closeModal">
       <div class="modal-container">
+        <h3>New Employee</h3>
         <base-input :value="newEmployee.name" placeholder="Name" type="text"
           @input="updateValue('name', $event.target.value)" />
         <base-input :value="newEmployee.surname" placeholder="Surname" type="text"
