@@ -2,6 +2,7 @@
   <table>
     <thead>
       <tr>
+        <th>№</th>
         <th>Name</th>
         <th>Surname</th>
         <th>Experience</th>
@@ -12,9 +13,11 @@
     </thead>
     <tbody>
       <employee-row
-        v-for="employee in employees"
+        v-for="(employee, index) in employees"
         :key="employee.id"
         :employee="employee"
+        :employees="employees"
+        :index="index"
         @edit="$emit('edit', employee)"
         @save="$emit('save', employee)"
         @remove="$emit('remove', employee)"

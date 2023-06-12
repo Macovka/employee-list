@@ -1,5 +1,6 @@
 <template>
   <tr>
+    <td>{{ index + 1 }}</td>
     <td v-if="!employee.editing">{{ employee.name }}</td>
     <td v-else><input v-model= "editedEmployee.name" /></td>
     <td v-if="!employee.editing">{{ employee.surname }}</td>
@@ -24,6 +25,14 @@ export default {
   props: {
     employee: {
       type: Object,
+      required: true,
+    },
+    employees: {
+      type: Array,
+      required: true,
+    },
+    index: {
+      type: Number,
       required: true,
     },
   },
