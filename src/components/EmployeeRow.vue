@@ -55,6 +55,9 @@ export default {
       this.$emit('edit', this.employee);
     },
     saveEmployee() {
+      if (!this.editedEmployee.name || !this.editedEmployee.surname || this.editedEmployee.experience < 0 || this.editedEmployee.experience === '' || this.editedEmployee.age < 0 || this.editedEmployee.age === '' || !this.editedEmployee.address) {
+        return
+      }
       this.$emit('save', this.employee, this.editedEmployee);
     },
     removeEmployee() {
