@@ -1,10 +1,10 @@
 <template>
   <div>
-    <input v-model="localEmployee.name" placeholder="Name" type="text">
-    <input v-model="localEmployee.surname" placeholder="Surname" type="text">
-    <input v-model.number="localEmployee.experience" placeholder="Experience" type="number">
-    <input v-model.number="localEmployee.age" placeholder="Age" type="number">
-    <input v-model="localEmployee.address" placeholder="Address" type="text">
+    <input v-model="newEmployee.name" placeholder="Name" type="text">
+    <input v-model="newEmployee.surname" placeholder="Surname" type="text">
+    <input v-model.number="newEmployee.experience" placeholder="Experience" type="number">
+    <input v-model.number="newEmployee.age" placeholder="Age" type="number">
+    <input v-model="newEmployee.address" placeholder="Address" type="text">
     <button @click="addEmployee">Add</button>
     <button @click="cancelEdit">Cancel</button>
   </div>
@@ -14,7 +14,7 @@
   export default {
     data() {
       return {
-        localEmployee: {
+        newEmployee: {
           name: '',
           surname: '',
           experience: '',
@@ -25,10 +25,10 @@
     },
     methods: {
       addEmployee() {
-        if (!this.localEmployee.name || !this.localEmployee.surname || this.localEmployee.experience < 0 || this.localEmployee.experience === '' || this.localEmployee.age < 0 || this.localEmployee.age === '' || !this.localEmployee.address) {
+        if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.experience === '' || this.newEmployee.age < 0 || this.newEmployee.age === '' || !this.newEmployee.address) {
           return;
         }
-        this.$emit('add', this.localEmployee);
+        this.$emit('add', this.newEmployee);
       },
       cancelEdit() {
         this.$emit('cancel');
