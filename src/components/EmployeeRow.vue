@@ -25,47 +25,50 @@
 </template>
 
 <script>
-export default {
-  props: {
-    employee: {
-      type: Object,
-      required: true,
-    },
-    employees: {
-      type: Array,
-      required: true,
-    },
-    index: {
-      type: Number,
-      required: true,
-    },
-  },
-  computed: {
-    editedEmployee: {
-      get() {
-        return { ...this.employee };
+  export default {
+    props: {
+      employee: {
+        type: Object,
+        required: true,
       },
-      set(newValue) {
-        this.$emit('input', newValue);
+      employees: {
+        type: Array,
+        required: true,
+      },
+      index: {
+        type: Number,
+        required: true,
       },
     },
-  },
-  methods: {
-    editEmployee() {
-      this.$emit('edit', this.employee);
+    data() {
+      return {
+        editedEmployee: { ...this.employee },
+      };
     },
-    saveEmployee() {
-      if (!this.editedEmployee.name || !this.editedEmployee.surname || this.editedEmployee.experience < 0 || this.editedEmployee.experience === '' || this.editedEmployee.age < 0 || this.editedEmployee.age === '' || !this.editedEmployee.address) {
-        return
-      }
-      this.$emit('save', this.employee, this.editedEmployee);
+    watch: {
+      employee: {
+        handler(newValue) {
+          this.editedEmployee = { ...newValue };
+        },
+        deep: true,
+      },
     },
-    removeEmployee() {
-      this.$emit('remove', this.employee);
+    methods: {
+      editEmployee() {
+        this.$emit('edit', this.employee);
+      },
+      saveEmployee() {
+        if (!this.editedEmployee.name || !this.editedEmployee.surname || this.editedEmployee.experience < 0 || this.editedEmployee.experience === '' || this.editedEmployee.age < 0 || this.editedEmployee.age === '' || !this.editedEmployee.address) {
+          return;
+        }
+        this.$emit('save', this.employee, this.editedEmployee);
+      },
+      removeEmployee() {
+        this.$emit('remove', this.employee);
+      },
+      cancelEdit() {
+        this.$emit('cancel', this.employee);
+      },
     },
-    cancelEdit() {
-      this.$emit('cancel', this.employee);
-    },
-  },
-};
+  };
 </script>
