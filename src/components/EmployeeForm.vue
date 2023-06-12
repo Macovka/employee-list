@@ -11,36 +11,28 @@
 </template>
 
 <script>
-export default {
-  props: {
-    employee: {
-      type: Object,
-      required: true,
+  export default {
+    data() {
+      return {
+        localEmployee: {
+          name: '',
+          surname: '',
+          experience: '',
+          age: '',
+          address: '',
+        },
+      };
     },
-  },
-  data() {
-    return {
-      localEmployee: { ...this.employee },
-    };
-  },
-  methods: {
-    addEmployee() {
-      if (!this.localEmployee.name || !this.localEmployee.surname || this.localEmployee.experience < 0 || this.localEmployee.experience === '' || this.localEmployee.age < 0 || this.localEmployee.age === '' || !this.localEmployee.address) {
-        return;
-      }
-      this.$emit('add', this.localEmployee);
-    },
-    cancelEdit() {
-      this.$emit('cancel');
-    },
-  },
-  watch: {
-    employee: {
-      handler(newValue) {
-        this.localEmployee = { ...newValue };
+    methods: {
+      addEmployee() {
+        if (!this.localEmployee.name || !this.localEmployee.surname || this.localEmployee.experience < 0 || this.localEmployee.experience === '' || this.localEmployee.age < 0 || this.localEmployee.age === '' || !this.localEmployee.address) {
+          return;
+        }
+        this.$emit('add', this.localEmployee);
       },
-      deep: true,
+      cancelEdit() {
+        this.$emit('cancel');
+      },
     },
-  },
-};
+  };
 </script>

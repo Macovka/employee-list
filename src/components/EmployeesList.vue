@@ -3,7 +3,7 @@
     <h1 class="header">Employees List</h1>
     <button v-if="!adding" @click="adding = !adding">{{ 'Add Employee' }}</button>
     <div v-else>
-      <employee-form :employee="newEmployee" @add="addEmployee" @cancel="adding = false" />
+      <employee-form @add="addEmployee" @cancel="adding = false" />
     </div>
     <employees-table
       :employees="employees"
