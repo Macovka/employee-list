@@ -11,7 +11,7 @@
       <input :class="{'err': hasErr && !newEmployee.surname}" type="text" v-model="newEmployee.surname" placeholder = "Surname" @focus.prevent="removeErr">
       <input :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience === undefined)}" type="number" v-model="newEmployee.experience" placeholder = "Experience" @focus.prevent="removeErr">
       <input :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age === undefined)}" type="number" v-model="newEmployee.age" placeholder = "Age" @focus.prevent="removeErr">
-      <input :class="{'err': hasErr && !newEmployee.adress}" type="text" v-model="newEmployee.adress" placeholder = "Adress" @focus.prevent="removeErr">
+      <input :class="{'err': hasErr && !newEmployee.address}" type="text" v-model="newEmployee.address" placeholder = "address" @focus.prevent="removeErr">
       <button @click="saveEmployee" class="btn btn-primary">Save Employee</button>
     </div>
     <table>
@@ -22,7 +22,7 @@
           <th>Surname</th>
           <th>Experience (years)</th>
           <th>Age (years)</th>
-          <th>Adress</th>
+          <th>address</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -48,8 +48,8 @@
             <div v-else>{{employee.age}}</div>
           </td>
           <td>
-            <input :class="{'err': hasErr && !employee.adress}" v-if="employee.inputState" type="text" v-model="employee.adress" @focus.prevent="removeErr">
-            <div v-else>{{employee.adress}}</div>
+            <input :class="{'err': hasErr && !employee.address}" v-if="employee.inputState" type="text" v-model="employee.address" @focus.prevent="removeErr">
+            <div v-else>{{employee.address}}</div>
           </td>
           <td>
             <button v-if="!employee.editing" @click="doEdit(employee)" class="btn btn-primary">Edit</button>  
@@ -71,9 +71,9 @@
           adding: false,
           newEmployee: {},
           employees: [
-            {id: 1, name: 'John', surname: 'Steele', experience: 4, age: 26, adress: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
-            {id: 2, name: 'Ann', surname: 'Cooper', experience: 5, age: 28, adress: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
-            {id: 3, name: 'Derrick', surname: 'Johnston', experience: 2, age: 23, adress: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
+            {id: 1, name: 'John', surname: 'Steele', experience: 4, age: 26, address: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
+            {id: 2, name: 'Ann', surname: 'Cooper', experience: 5, age: 28, address: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
+            {id: 3, name: 'Derrick', surname: 'Johnston', experience: 2, age: 23, address: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
           ],
           employeeBackup: null, // property to hold the original employee data
           hasErr: false,
@@ -83,7 +83,7 @@
       },
       methods: {
         saveEmployee(){
-          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.experience === undefined || this.newEmployee.age < 0 || this.newEmployee.age === undefined || !this.newEmployee.adress) {           
+          if (!this.newEmployee.name || !this.newEmployee.surname || this.newEmployee.experience < 0 || this.newEmployee.experience === undefined || this.newEmployee.age < 0 || this.newEmployee.age === undefined || !this.newEmployee.address) {           
             this.hasErr = true;
             return
           }
@@ -93,7 +93,7 @@
             surname: this.newEmployee.surname,
             experience: this.newEmployee.experience,
             age: this.newEmployee.age,
-            adress: this.newEmployee.adress,
+            address: this.newEmployee.address,
           });
           this.newEmployee = {};
         },
@@ -121,7 +121,7 @@
           employee.inputState = !employee.inputState;
         },
         saveEdit(employee) { 
-          if (!employee.name || !employee.surname || employee.experience < 0 || employee.experience === '' || employee.age < 0 || employee.age === '' || !employee.adress) {
+          if (!employee.name || !employee.surname || employee.experience < 0 || employee.experience === '' || employee.age < 0 || employee.age === '' || !employee.address) {
             this.hasErr = true;
             return
           }
