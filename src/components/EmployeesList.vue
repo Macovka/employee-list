@@ -26,16 +26,16 @@
       return {
         adding: false,
         newEmployee: {
-          name: '',
-          surname: '',
+          firstName: '',
+          lastName: '',
           experience: '',
           age: '',
           address: '',
         },
         employees: [
-          {id: 1, name: 'John', surname: 'Steele', experience: 4, age: 26, address: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
-          {id: 2, name: 'Ann', surname: 'Cooper', experience: 5, age: 28, address: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
-          {id: 3, name: 'Derrick', surname: 'Johnston', experience: 2, age: 23, address: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
+          {id: 1, firstName: 'John', lastName: 'Steele', experience: 4, age: 26, address: '905 Hannah Corners Adamsstad RM14 3PA', editing: false, inputState: false},
+          {id: 2, firstName: 'Ann', lastName: 'Cooper', experience: 5, age: 28, address: '5 Donna Station Ellisshire DE15 9DU', editing: false, inputState: false},
+          {id: 3, firstName: 'Derrick', lastName: 'Johnston', experience: 2, age: 23, address: '3 Zach Greens Jonesfort FK3 8EP', editing: false, inputState: false},
         ],
       }
     },
@@ -43,16 +43,16 @@
       addEmployee(employee) {
         this.employees.push({
           id: this.employees.length + 1,
-          name: employee.name,
-          surname: employee.surname,
+          firstName: employee.firstName,
+          lastName: employee.lastName,
           experience: employee.experience,
           age: employee.age,
           address: employee.address,
           editing: false,
         });
         this.newEmployee = {
-          name: '',
-          surname: '',
+          firstName: '',
+          lastName: '',
           experience: '',
           age: '',
           address: '',

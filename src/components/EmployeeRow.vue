@@ -1,10 +1,10 @@
 <template>
   <tr>
     <td>{{ index + 1 }}</td>
-    <td v-if="!employee.editing">{{ employee.name }}</td>
-    <td v-else><base-input :value="editedEmployee.name" @input="updateValue('name', $event.target.value)" type="text" /></td>
-    <td v-if="!employee.editing">{{ employee.surname }}</td>
-    <td v-else><base-input :value="editedEmployee.surname" @input="updateValue('surname', $event.target.value)" type="text" /></td>
+    <td v-if="!employee.editing">{{ employee.firstName }}</td>
+    <td v-else><base-input :value="editedEmployee.firstName" @input="updateValue('firstName', $event.target.value)" type="text" /></td>
+    <td v-if="!employee.editing">{{ employee.lastName }}</td>
+    <td v-else><base-input :value="editedEmployee.lastName" @input="updateValue('lastName', $event.target.value)" type="text" /></td>
     <td v-if="!employee.editing">{{ employee.experience }} {{ unit(employee.experience) }}</td>
     <td v-else><base-input :value="editedEmployee.experience" @input="updateValue('experience', $event.target.value)" type="number" /></td>
     <td v-if="!employee.editing">{{ employee.age }} {{ unit(employee.age) }}</td>
@@ -58,7 +58,7 @@
         this.$emit('edit', this.employee);
       },
       saveEmployee() {
-        if (!this.editedEmployee.name || !this.editedEmployee.surname || this.editedEmployee.experience < 0 || this.editedEmployee.experience === '' || this.editedEmployee.age < 0 || this.editedEmployee.age === '' || !this.editedEmployee.address) {
+        if (!this.editedEmployee.firstName || !this.editedEmployee.lastName || this.editedEmployee.experience < 0 || this.editedEmployee.experience === '' || this.editedEmployee.age < 0 || this.editedEmployee.age === '' || !this.editedEmployee.address) {
           return;
         }
         this.$emit('save', this.employee, this.editedEmployee);

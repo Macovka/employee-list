@@ -3,8 +3,8 @@
     <thead>
       <tr>
         <th>№</th>
-        <th>Name</th>
-        <th>Surname</th>
+        <th>First Name</th>
+        <th>Last Name</th>
         <th>Experience</th>
         <th>Age</th>
         <th>Address</th>
