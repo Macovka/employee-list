@@ -33,7 +33,7 @@
         </div>
         <div class="modal-container__buttons-wrapper">
           <base-button @click="addEmployee">Add</base-button>
-          <base-button @click="cancelEdit">Cancel</base-button>
+          <base-button class="btn btn-danger" @click="cancelEdit">Cancel</base-button>
         </div>
       </div>
     </div>

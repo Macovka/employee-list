@@ -45,11 +45,11 @@
       <div class="button-wrapper">
         <div v-if="!employee.editing">
           <base-button @click="editEmployee">Edit</base-button>
-          <base-button @click="removeEmployee">Remove</base-button>
+          <base-button @click="removeEmployee" class="btn btn-danger">Remove</base-button>
         </div>
         <div v-else>
           <base-button @click="saveEmployee">Save</base-button>     
-          <base-button @click="cancelEdit">Cancel</base-button>
+          <base-button @click="cancelEdit" class="btn btn-danger">Cancel</base-button>
         </div>  
       </div>   
     </td>
