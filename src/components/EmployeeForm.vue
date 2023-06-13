@@ -2,7 +2,7 @@
   <div class="modal-mask">
     <div class="modal-wrapper" @click="closeModal">
       <div class="modal-container">
-        <h3>New Employee</h3>
+        <h2>New Employee</h2>
         <base-input 
           :value="newEmployee.firstName" 
           placeholder="First Name" type="text"

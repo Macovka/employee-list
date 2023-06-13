@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>№</th>
@@ -28,17 +28,36 @@
 </template>
 
 <script>
-import EmployeeRow from './EmployeeRow.vue';
+  import EmployeeRow from './EmployeeRow.vue';
 
-export default {
-  components: {
-    EmployeeRow,
-  },
-  props: {
-    employees: {
-      type: Array,
-      required: true,
+  export default {
+    components: {
+      EmployeeRow,
     },
-  },
-};
+    props: {
+      employees: {
+        type: Array,
+        required: true,
+      },
+    },
+  };
 </script>
+
+<style scoped>
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px;
+  }
+  .table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .table th {
+    background-color: #f2f2f2;
+    border: 1px solid #000;
+    padding: 8px;
+  }
+</style>

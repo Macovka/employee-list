@@ -1,7 +1,5 @@
 <template>
-  <div :class="classes">
-    <input :type="type" :value="value" :placeholder="placeholder" @input="updateValue" />
-  </div>
+  <input :type="type" :value="value" :placeholder="placeholder" @input="updateValue" />
 </template>
 
 <script>
@@ -20,13 +18,6 @@
         default: '',
       },
     },
-    computed: {
-      classes() {
-        return [
-          'form-group',
-        ];
-      },
-    },
     methods: {
       updateValue(event) {
         this.$emit('input', event);
@@ -36,41 +27,26 @@
 </script>
 
 <style scoped>
-.form-group {
-  margin-bottom: 1rem;
-}
+  input {
+    display: block;
+    width: 80%;
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-}
-
-input {
-  display: block;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: #495057;
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da;
-  border-radius: 0.25rem;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-input:focus {
-  color: #495057;
-  background-color: #fff;
-  border-color: #80bdff;
-  outline: 0;
-  box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-input:disabled {
-  background-color: #e9ecef;
-  opacity: 1;
-}
+  input:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
+  }
 </style>

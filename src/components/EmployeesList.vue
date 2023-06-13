@@ -1,12 +1,14 @@
 <template>
-  <div id="employees-list">
-    <h1 class="header">Employees List</h1>
-    <base-button 
-      v-if="!adding" 
-      @click="adding = !adding"
-    >
-      Add Employee
-    </base-button>
+  <div>
+    <div class="header-wrapper">
+      <h1 class="header">Employees List</h1>
+      <base-button 
+        v-if="!adding" 
+        @click="adding = !adding"
+      >
+        Add Employee
+      </base-button>
+    </div>
     <employee-form 
       v-if="adding" 
       key="employee-form" 
@@ -120,3 +122,12 @@
     },
   }
 </script>
+
+<style scoped>
+  .header-wrapper{
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    align-items: center;
+  }
+</style>

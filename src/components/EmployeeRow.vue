@@ -42,14 +42,16 @@
       />
     </td>
     <td>
-      <div v-if="!employee.editing">
-        <base-button @click="editEmployee">Edit</base-button>
-        <base-button @click="removeEmployee">Remove</base-button>
-      </div>
-      <div v-else>
-        <base-button @click="saveEmployee">Save</base-button>     
-        <base-button @click="cancelEdit">Cancel</base-button>
-      </div>     
+      <div class="button-wrapper">
+        <div v-if="!employee.editing">
+          <base-button @click="editEmployee">Edit</base-button>
+          <base-button @click="removeEmployee">Remove</base-button>
+        </div>
+        <div v-else>
+          <base-button @click="saveEmployee">Save</base-button>     
+          <base-button @click="cancelEdit">Cancel</base-button>
+        </div>  
+      </div>   
     </td>
   </tr>
 </template>
@@ -133,3 +135,20 @@
     },
   };
 </script>
+
+<style scoped>
+  tr {
+    border: 1px solid #000;
+  }
+
+  td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .button-wrapper {
+    display: flex;
+    width: 165px;
+  }
+</style>
