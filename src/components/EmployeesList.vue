@@ -137,5 +137,6 @@
     justify-content: space-around;
     height: 60px;
     align-items: center;
+    margin: 30px auto;
   }
 </style>

@@ -3,34 +3,38 @@
     <div class="modal-wrapper" @click="closeModal">
       <div class="modal-container">
         <h2>New Employee</h2>
-        <base-input 
-          :value="newEmployee.firstName" 
-          placeholder="First Name" type="text"
-          @input="updateValue('firstName', $event.target.value)" 
-        />
-        <base-input 
-          :value="newEmployee.lastName" 
-          placeholder="Last Name" 
-          type="text"
-          @input="updateValue('lastName', $event.target.value)" 
+        <div class="modal-container__inputs-wrapper">
+          <base-input 
+            :value="newEmployee.firstName" 
+            placeholder="First Name" type="text"
+            @input="updateValue('firstName', $event.target.value)" 
           />
-        <base-input 
-          :value="newEmployee.experience" 
-          placeholder="Experience" type="number"
-          @input="updateValue('experience', $event.target.value)" 
-        />
-        <base-input 
-          :value="newEmployee.age" 
-          placeholder="Age" type="number"
-          @input="updateValue('age', $event.target.value)" 
-        />
-        <base-input 
-          :value="newEmployee.address" 
-          placeholder="Address" type="text"
-          @input="updateValue('address', $event.target.value)" 
-        />
-        <base-button @click="addEmployee">Add</base-button>
-        <base-button @click="cancelEdit">Cancel</base-button>
+          <base-input 
+            :value="newEmployee.lastName" 
+            placeholder="Last Name" 
+            type="text"
+            @input="updateValue('lastName', $event.target.value)" 
+            />
+          <base-input 
+            :value="newEmployee.experience" 
+            placeholder="Experience" type="number"
+            @input="updateValue('experience', $event.target.value)" 
+          />
+          <base-input 
+            :value="newEmployee.age" 
+            placeholder="Age" type="number"
+            @input="updateValue('age', $event.target.value)" 
+          />
+          <base-input 
+            :value="newEmployee.address" 
+            placeholder="Address" type="text"
+            @input="updateValue('address', $event.target.value)" 
+          />
+        </div>
+        <div class="modal-container__buttons-wrapper">
+          <base-button @click="addEmployee">Add</base-button>
+          <base-button @click="cancelEdit">Cancel</base-button>
+        </div>
       </div>
     </div>
   </div>
@@ -106,5 +110,19 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;
+  }
+
+  .modal-container__inputs-wrapper,
+  .modal-container__buttons-wrapper {
+    margin: 20px auto;
+  }
+
+  .modal-container__inputs-wrapper input {
+    margin: 8px auto;
+  }
+
+  .modal-container__buttons-wrapper {
+    display: flex;
+    justify-content: space-around;
   }
 </style>
