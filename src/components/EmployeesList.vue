@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="employee-list">
     <div class="header-wrapper">
       <h1 class="header">Employees List</h1>
       <base-button 
@@ -124,7 +124,15 @@
 </script>
 
 <style scoped>
-  .header-wrapper{
+  .employee-list {
+    padding: 30px;
+    margin: auto;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 900px;
+  }
+  .header-wrapper {
     display: flex;
     justify-content: space-around;
     height: 60px;
