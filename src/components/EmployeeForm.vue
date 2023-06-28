@@ -5,29 +5,39 @@
         <h2>{{ formTitle }}</h2>
         <div class="modal-container__inputs-wrapper">
           <base-input 
+            :class="{'err': hasErr && !newEmployee.firstName}"
             v-model="newEmployee.firstName" 
             placeholder="First Name" 
             type="text"
+            @focus.prevent="onFocus"
           />
           <base-input 
+            :class="{'err': hasErr && !newEmployee.lastName}"
             v-model="newEmployee.lastName" 
             placeholder="Last Name" 
             type="text"
-            />
+            @focus.prevent="onFocus"
+          />
           <base-input 
+            :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience === undefined)}"
             v-model="newEmployee.experience" 
             placeholder="Experience" 
             type="number"
+            @focus.prevent="onFocus"
           />
           <base-input 
+            :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age === undefined)}"
             v-model="newEmployee.age" 
             placeholder="Age" 
             type="number"
+            @focus.prevent="onFocus"
           />
           <base-input 
+            :class="{'err': hasErr && !newEmployee.address}"
             v-model="newEmployee.address" 
             placeholder="Address" 
             type="text"
+            @focus.prevent="onFocus"
           />
         </div>
         <div class="modal-container__buttons-wrapper">
@@ -54,19 +64,26 @@
     data() {
       return {
         newEmployee: {},
+        hasErr: false
       };
     },
-    methods: {
-      saveEmployee() {
-        if (
+    computed: {
+      isInvalid() {
+        return (
           !this.newEmployee.firstName || 
           !this.newEmployee.lastName || 
           this.newEmployee.experience < 0 || 
-          this.newEmployee.experience === '' || 
+          this.newEmployee.experience === undefined || 
           this.newEmployee.age < 0 || 
-          this.newEmployee.age === '' || 
+          this.newEmployee.age === undefined || 
           !this.newEmployee.address
-        ) {
+        );
+      },
+    },
+    methods: {
+      saveEmployee() {
+        if (this.isInvalid) {
+          this.hasErr = true;
           return;
         }
         if (this.editingEmployee) {
@@ -76,6 +93,7 @@
         }
       },
       cancelEdit() {
+        this.hasErr = false;
         this.$emit('cancel');
       },
       closeModal(event) {
@@ -83,6 +101,9 @@
           this.$emit('cancel');
         }
       },
+      onFocus() {
+        if(this.hasErr) this.hasErr = false
+      }
     },
     created() {
       if (this.editingEmployee) {

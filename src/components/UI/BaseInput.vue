@@ -1,5 +1,11 @@
 <template>
-  <input :type="type" :value="modelValue" :placeholder="placeholder" @input="updateInput"/>
+  <input 
+    :type="type" 
+    :value="modelValue" 
+    :placeholder="placeholder" 
+    :class="classes" 
+    @input="updateInput"
+  />
 </template>
 
 <script>
@@ -14,6 +20,10 @@
         default: '',
       },
       placeholder: {
+        type: String,
+        default: '',
+      },
+      classes: {
         type: String,
         default: '',
       },
@@ -46,5 +56,9 @@
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  .err {
+    border-color: red;
   }
 </style>
