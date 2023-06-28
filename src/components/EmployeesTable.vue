@@ -18,7 +18,7 @@
         :employee="employee"
         :employees="employees"
         :index="index"
-        @edit="$emit('edit')"
+        @edit="$emit('edit', employee)"
         @remove="$emit('remove', employee)"
       />
     </tbody>

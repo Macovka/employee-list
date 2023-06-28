@@ -29,7 +29,7 @@
     },
     methods: {
       editEmployee() {
-        this.$emit('edit');
+        this.$emit('edit', this.employee);
       },
       removeEmployee() {
         this.$emit('remove', this.employee);

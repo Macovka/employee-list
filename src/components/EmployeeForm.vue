@@ -46,6 +46,10 @@
         type: String,
         required: true,
       },
+      employee: {
+        type: Object,
+        default: null,
+      },
     },
     data() {
       return {
@@ -71,7 +75,12 @@
         ) {
           return;
         }
-        this.$emit('save', this.newEmployee);
+        if (this.employee) {
+          Object.assign(this.employee, this.newEmployee);
+          this.$emit('save');
+        } else {
+          this.$emit('save', this.newEmployee);
+        }
       },
       cancelEdit() {
         this.$emit('cancel');
@@ -81,6 +90,12 @@
           this.$emit('cancel');
         }
       },
+    },
+    created() {
+      if (this.employee) {
+        this.newEmployee = { ...this.employee };
+      }
+      console.log(this.newEmployee)
     },
   };
 </script>

@@ -14,6 +14,7 @@
       @save="saveEmployee" 
       @cancel="editing = false" 
       :formTitle="formTitle"
+      :employee="editedEmployee"
     />
     <employees-table
       :employees="employees"
@@ -62,6 +63,7 @@
             address: '3 Zach Greens Jonesfort FK3 8EP',
           },
         ],
+        editedEmployee: null,
       }
     },
     methods: {
@@ -76,9 +78,11 @@
         });
         this.editing = false;
       },
-      editEmployee() {
+      editEmployee(employee) {
+        console.log(employee)
         this.editing = true;
-        this.formTitle = 'Edit Employee'
+        this.formTitle = 'Edit Employee';
+        this.editedEmployee = { ...employee };
       },
       removeEmployee(employee) {
         const index = this.employees.findIndex(e => e.id === employee.id);
