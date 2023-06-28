@@ -1,4 +1,4 @@
-# test-task
+# employee-list
 
 ## Project setup
 ```
