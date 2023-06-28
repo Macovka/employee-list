@@ -46,7 +46,7 @@
         type: String,
         required: true,
       },
-      employee: {
+      editingEmployee: {
         type: Object,
         default: null,
       },
@@ -69,11 +69,10 @@
         ) {
           return;
         }
-        if (this.employee) {
-          Object.assign(this.employee, this.newEmployee);
-          this.$emit('save');
+        if (this.editingEmployee) {
+          this.$emit('saveEditedEmployee', this.newEmployee);
         } else {
-          this.$emit('save', this.newEmployee);
+          this.$emit('saveAddedEmployee', this.newEmployee);
         }
       },
       cancelEdit() {
@@ -86,8 +85,8 @@
       },
     },
     created() {
-      if (this.employee) {
-        this.newEmployee = { ...this.employee };
+      if (this.editingEmployee) {
+        this.newEmployee = { ...this.editingEmployee };
       }
     },
   };

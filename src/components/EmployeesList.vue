@@ -11,10 +11,11 @@
     </div>
     <employee-form 
       v-if="editing" 
-      @save="saveEmployee" 
+      @saveAddedEmployee="saveAddedEmployee" 
+      @saveEditedEmployee="saveEditedEmployee" 
       @cancel="editing = false" 
       :formTitle="formTitle"
-      :employee="editedEmployee"
+      :editingEmployee="editingEmployee"
     />
     <employees-table
       :employees="employees"
@@ -63,26 +64,31 @@
             address: '3 Zach Greens Jonesfort FK3 8EP',
           },
         ],
-        editedEmployee: null,
+        editingEmployee: null,
       }
     },
     methods: {
       addEmployee() {
-        this.editedEmployee = null
+        this.editingEmployee = null
         this.editing = true;
         this.formTitle = 'New Employee'
-      },
-      saveEmployee(employee) {
-        this.employees.push({
-          ...employee,
-          id: this.employees.length + 1,
-        });
-        this.editing = false;
       },
       editEmployee(employee) {
         this.editing = true;
         this.formTitle = 'Edit Employee';
-        this.editedEmployee = { ...employee };
+        this.editingEmployee = { ...employee };
+      },
+      saveAddedEmployee(newEmployee) {
+        this.employees.push({
+          ...newEmployee,
+          id: this.employees.length + 1,
+        });
+        this.editing = false;
+      },
+      saveEditedEmployee(editedEmployee) {
+        const index = this.employees.findIndex(e => e.id === editedEmployee.id);
+          this.employees[index] = editedEmployee;
+        this.editing = false;
       },
       removeEmployee(employee) {
         const index = this.employees.findIndex(e => e.id === employee.id);
