@@ -42,6 +42,12 @@
 
 <script>
   export default {
+    props: {
+      employee: {
+        type: Object,
+        required: true,
+      },
+    },
     data() {
       return {
         newEmployee: {

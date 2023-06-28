@@ -2,13 +2,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="table__column-number">№</th>
-        <th class="table__column-firstname">First Name</th>
-        <th class="table__column-lastname">Last Name</th>
-        <th class="table__column-experience">Experience</th>
-        <th class="table__column-age">Age</th>
-        <th class="table__column-address">Address</th>
-        <th class="table__column-actions">Actions</th>
+        <th class="table__column number">№</th>
+        <th class="table__column firstname">First Name</th>
+        <th class="table__column lastname">Last Name</th>
+        <th class="table__column experience">Experience</th>
+        <th class="table__column age">Age</th>
+        <th class="table__column address">Address</th>
+        <th class="table__column actions">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -18,7 +18,7 @@
         :employee="employee"
         :employees="employees"
         :index="index"
-        @edit="$emit('edit', employee)"
+        @edit="$emit('edit')"
         @save="(editedEmployee, originalEmployee) => $emit('save', editedEmployee, originalEmployee)"
         @remove="$emit('remove', employee)"
         @cancel="$emit('cancel', employee)"
@@ -62,18 +62,18 @@
     padding: 8px;
   }
 
-  .table__column-number{
+  .table__column number{
     width: 16px;
   }
 
-  .table__column-firstname,
-  .table__column-lastname,
-  .table__column-experience,
-  .table__column-age {
+  .table__column firstname,
+  .table__column lastname,
+  .table__column experience,
+  .table__column age {
     width: 80px;
   }
 
-  .table__column-address {
+  .table__column address {
     width: 275px;
   }
 </style>

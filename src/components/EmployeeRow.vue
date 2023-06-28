@@ -1,56 +1,15 @@
 <template>
   <tr>
     <td>{{ index + 1 }}</td>
-    <td v-if="!employee.editing">{{ employee.firstName }}</td>
-    <td v-else>
-      <base-input 
-        :value="editedEmployee.firstName" 
-        @input="updateValue('firstName', $event.target.value)" 
-        type="text" 
-      />
-    </td>
-    <td v-if="!employee.editing">{{ employee.lastName }}</td>
-    <td v-else>
-      <base-input 
-        :value="editedEmployee.lastName" 
-        @input="updateValue('lastName', $event.target.value)" 
-        type="text" 
-      />
-    </td>
-    <td v-if="!employee.editing">{{ employee.experience }} {{ unit(employee.experience) }}</td>
-    <td v-else>
-      <base-input 
-        :value="editedEmployee.experience" 
-        @input="updateValue('experience', $event.target.value)" 
-        type="number" 
-      />
-    </td>
-    <td v-if="!employee.editing">{{ employee.age }} {{ unit(employee.age) }}</td>
-    <td v-else>
-      <base-input 
-        :value="editedEmployee.age" 
-        @input="updateValue('age', $event.target.value)" 
-        type="number" 
-      />
-    </td>
-    <td v-if="!employee.editing">{{ employee.address }}</td>
-    <td v-else>
-      <base-input 
-        :value="editedEmployee.address" 
-        @input="updateValue('address', $event.target.value)" 
-        type="text" 
-      />
-    </td>
+    <td>{{ employee.firstName }}</td>
+    <td>{{ employee.lastName }}</td>
+    <td>{{ employee.experience }} {{ unit(employee.experience) }}</td>
+    <td>{{ employee.age }} {{ unit(employee.age) }}</td>
+    <td>{{ employee.address }}</td>
     <td>
       <div class="button-wrapper">
-        <div v-if="!employee.editing">
-          <base-button @click="editEmployee">Edit</base-button>
-          <base-button @click="removeEmployee" class="btn btn-danger">Remove</base-button>
-        </div>
-        <div v-else>
-          <base-button @click="saveEmployee">Save</base-button>     
-          <base-button @click="cancelEdit" class="btn btn-danger">Cancel</base-button>
-        </div>  
+        <base-button @click="editEmployee">Edit</base-button>
+        <base-button @click="removeEmployee" class="btn btn-danger">Remove</base-button>
       </div>   
     </td>
   </tr>
@@ -63,75 +22,21 @@
         type: Object,
         required: true,
       },
-      employees: {
-        type: Array,
-        required: true,
-      },
       index: {
         type: Number,
         required: true,
       },
     },
-    data() {
-      return {
-        editedEmployee: { ...this.employee },
-      };
-    },
-    watch: {
-      employee: {
-        handler(newValue) {
-          this.editedEmployee = { ...newValue };
-        },
-        deep: true,
-      },
-    },
     methods: {
       editEmployee() {
-        this.$emit('edit', this.employee);
-      },
-      saveEmployee() {
-        if (
-          !this.editedEmployee.firstName || 
-          !this.editedEmployee.lastName || 
-          this.editedEmployee.experience < 0 || 
-          this.editedEmployee.experience === '' || 
-          this.editedEmployee.age < 0 || 
-          this.editedEmployee.age === '' || 
-          !this.editedEmployee.address
-          ) {
-          return;
-        }
-        this.$emit('save', this.employee, this.editedEmployee);
+        this.$emit('edit');
       },
       removeEmployee() {
         this.$emit('remove', this.employee);
       },
-      cancelEdit() {
-        this.$emit('cancel', this.employee);
-      },
       unit(property) {
         return property === '1' ? ' year' : ' years'
       },
-      updateValue(field, value) {
-        this.editedEmployee[field] = value;
-      },
-      handleClickOutside(event) {
-        if (
-          event.target.tagName === 'BUTTON' &&
-          !this.$el.contains(event.target) &&
-          this.employee.editing
-        ) {
-          this.cancelEdit();
-        }
-      },
-    },
-    mounted() {
-      this.$nextTick(() => {
-        document.addEventListener('click', this.handleClickOutside, true);
-      });
-    },
-    beforeUnmount() {
-      document.removeEventListener('click', this.handleClickOutside, true);
     },
   };
 </script>
@@ -146,9 +51,9 @@
     padding: 8px;
     text-align: left;
   }
-
   .button-wrapper {
     display: flex;
     width: 165px;
+    justify-content: space-between;
   }
 </style>
