@@ -3,30 +3,22 @@
     <div class="header-wrapper">
       <h1 class="header">Employees List</h1>
       <base-button 
-        v-if="!adding" 
-        @click="adding = !adding"
+        v-if="!editing" 
+        @click="addEmployee"
       >
         Add Employee
       </base-button>
     </div>
     <employee-form 
-      v-if="adding" 
-      key="employee-form" 
-      @add="addEmployee" 
-      @cancel="adding = false" 
-    />
-    <employee-form 
       v-if="editing" 
-      key="employee-form" 
-      @add="addEmployee" 
-      @cancel="adding = false" 
+      @save="saveEmployee" 
+      @cancel="editing = false" 
+      :formTitle="formTitle"
     />
     <employees-table
       :employees="employees"
       @edit="editEmployee"
-      @save="saveEmployee"
       @remove="removeEmployee"
-      @cancel="cancelEdit"
     />
   </div>
 </template>
@@ -42,15 +34,8 @@
     },
     data() {
       return {
-        adding: false,
         editing: false,
-        newEmployee: {
-          firstName: '',
-          lastName: '',
-          experience: '',
-          age: '',
-          address: '',
-        },
+        formTitle: '',
         employees: [
           {
             id: 1, 
@@ -58,8 +43,7 @@
             lastName: 'Steele', 
             experience: 4, 
             age: 26, 
-            address: '905 Hannah Corners Adamsstad RM14 3PA', 
-            inputState: false
+            address: '905 Hannah Corners Adamsstad RM14 3PA',
           },
           {
             id: 2, 
@@ -67,8 +51,7 @@
             lastName: 'Cooper', 
             experience: 5, 
             age: 28, 
-            address: '5 Donna Station Ellisshire DE15 9DU', 
-            inputState: false
+            address: '5 Donna Station Ellisshire DE15 9DU',
           },
           {
             id: 3, 
@@ -76,39 +59,26 @@
             lastName: 'Johnston', 
             experience: 2, 
             age: 23, 
-            address: '3 Zach Greens Jonesfort FK3 8EP', 
-            inputState: false
+            address: '3 Zach Greens Jonesfort FK3 8EP',
           },
         ],
       }
     },
     methods: {
-      addEmployee(employee) {
+      addEmployee() {
+        this.editing = true;
+        this.formTitle = 'New Employee'
+      },
+      saveEmployee(employee) {
         this.employees.push({
+          ...employee,
           id: this.employees.length + 1,
-          firstName: employee.firstName,
-          lastName: employee.lastName,
-          experience: employee.experience,
-          age: employee.age,
-          address: employee.address,
         });
-        this.newEmployee = {
-          firstName: '',
-          lastName: '',
-          experience: '',
-          age: '',
-          address: '',
-        };
-        this.adding = false;
+        this.editing = false;
       },
       editEmployee() {
         this.editing = true;
-      },
-      saveEmployee(originalEmployee, editedEmployee) {
-        const index = this.employees.findIndex(e => e.id === originalEmployee.id);
-        if (index !== -1) {
-          this.employees.splice(index, 1, { ...editedEmployee});
-        }
+        this.formTitle = 'Edit Employee'
       },
       removeEmployee(employee) {
         const index = this.employees.findIndex(e => e.id === employee.id);

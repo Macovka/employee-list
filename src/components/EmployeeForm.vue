@@ -2,11 +2,12 @@
   <div class="modal-mask">
     <div class="modal-wrapper" @click="closeModal">
       <div class="modal-container">
-        <h2>New Employee</h2>
+        <h2>{{ formTitle }}</h2>
         <div class="modal-container__inputs-wrapper">
           <base-input 
             :value="newEmployee.firstName" 
-            placeholder="First Name" type="text"
+            placeholder="First Name" 
+            type="text"
             @input="updateValue('firstName', $event.target.value)" 
           />
           <base-input 
@@ -17,22 +18,25 @@
             />
           <base-input 
             :value="newEmployee.experience" 
-            placeholder="Experience" type="number"
+            placeholder="Experience" 
+            type="number"
             @input="updateValue('experience', $event.target.value)" 
           />
           <base-input 
             :value="newEmployee.age" 
-            placeholder="Age" type="number"
+            placeholder="Age" 
+            type="number"
             @input="updateValue('age', $event.target.value)" 
           />
           <base-input 
             :value="newEmployee.address" 
-            placeholder="Address" type="text"
+            placeholder="Address" 
+            type="text"
             @input="updateValue('address', $event.target.value)" 
           />
         </div>
         <div class="modal-container__buttons-wrapper">
-          <base-button @click="addEmployee">Add</base-button>
+          <base-button @click="saveEmployee">Save</base-button>
           <base-button class="btn btn-danger" @click="cancelEdit">Cancel</base-button>
         </div>
       </div>
@@ -43,8 +47,8 @@
 <script>
   export default {
     props: {
-      employee: {
-        type: Object,
+      formTitle: {
+        type: String,
         required: true,
       },
     },
@@ -60,7 +64,7 @@
       };
     },
     methods: {
-      addEmployee() {
+      saveEmployee() {
         if (
           !this.newEmployee.firstName || 
           !this.newEmployee.lastName || 
@@ -72,7 +76,7 @@
         ) {
           return;
         }
-        this.$emit('add', this.newEmployee);
+        this.$emit('save', this.newEmployee);
       },
       cancelEdit() {
         this.$emit('cancel');
