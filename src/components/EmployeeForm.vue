@@ -5,34 +5,29 @@
         <h2>{{ formTitle }}</h2>
         <div class="modal-container__inputs-wrapper">
           <base-input 
-            :value="newEmployee.firstName" 
+            v-model="newEmployee.firstName" 
             placeholder="First Name" 
             type="text"
-            @input="updateValue('firstName', $event.target.value)" 
           />
           <base-input 
-            :value="newEmployee.lastName" 
+            v-model="newEmployee.lastName" 
             placeholder="Last Name" 
             type="text"
-            @input="updateValue('lastName', $event.target.value)" 
             />
           <base-input 
-            :value="newEmployee.experience" 
+            v-model="newEmployee.experience" 
             placeholder="Experience" 
             type="number"
-            @input="updateValue('experience', $event.target.value)" 
           />
           <base-input 
-            :value="newEmployee.age" 
+            v-model="newEmployee.age" 
             placeholder="Age" 
             type="number"
-            @input="updateValue('age', $event.target.value)" 
           />
           <base-input 
-            :value="newEmployee.address" 
+            v-model="newEmployee.address" 
             placeholder="Address" 
             type="text"
-            @input="updateValue('address', $event.target.value)" 
           />
         </div>
         <div class="modal-container__buttons-wrapper">
@@ -80,9 +75,6 @@
       },
       cancelEdit() {
         this.$emit('cancel');
-      },
-      updateValue(field, value) {
-        this.newEmployee[field] = value;
       },
       closeModal(event) {
         if (event.target === event.currentTarget) {
