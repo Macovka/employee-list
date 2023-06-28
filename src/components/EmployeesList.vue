@@ -68,6 +68,7 @@
     },
     methods: {
       addEmployee() {
+        this.editedEmployee = null
         this.editing = true;
         this.formTitle = 'New Employee'
       },
@@ -79,7 +80,6 @@
         this.editing = false;
       },
       editEmployee(employee) {
-        console.log(employee)
         this.editing = true;
         this.formTitle = 'Edit Employee';
         this.editedEmployee = { ...employee };

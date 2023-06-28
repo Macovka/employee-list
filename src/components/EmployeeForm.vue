@@ -53,13 +53,7 @@
     },
     data() {
       return {
-        newEmployee: {
-          firstName: '',
-          lastName: '',
-          experience: '',
-          age: '',
-          address: '',
-        },
+        newEmployee: {},
       };
     },
     methods: {
@@ -95,7 +89,6 @@
       if (this.employee) {
         this.newEmployee = { ...this.employee };
       }
-      console.log(this.newEmployee)
     },
   };
 </script>
