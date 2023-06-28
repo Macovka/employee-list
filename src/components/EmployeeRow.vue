@@ -53,7 +53,7 @@
   }
   .button-wrapper {
     display: flex;
-    width: 165px;
+    width: 100%;
     justify-content: space-between;
   }
 </style>

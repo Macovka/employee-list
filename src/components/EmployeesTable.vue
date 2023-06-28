@@ -2,13 +2,13 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="table__column number">№</th>
-        <th class="table__column firstname">First Name</th>
-        <th class="table__column lastname">Last Name</th>
-        <th class="table__column experience">Experience</th>
-        <th class="table__column age">Age</th>
-        <th class="table__column address">Address</th>
-        <th class="table__column actions">Actions</th>
+        <th class="table__number">№</th>
+        <th class="table__firstname">First Name</th>
+        <th class="table__lastname">Last Name</th>
+        <th class="table__experience">Experience</th>
+        <th class="table__age">Age</th>
+        <th class="table__address">Address</th>
+        <th class="table__actions">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -60,18 +60,22 @@
     padding: 8px;
   }
 
-  .table__column number{
+  .table__number{
     width: 16px;
   }
 
-  .table__column firstname,
-  .table__column lastname,
-  .table__column experience,
-  .table__column age {
+  .table__firstname,
+  .table__lastname,
+  .table__experience,
+  .table__age {
     width: 80px;
   }
 
-  .table__column address {
+  .table__address {
     width: 275px;
+  }
+
+  .table__actions {
+    width: 182px;
   }
 </style>
