@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import BaseInput from "./components/UI/BaseInput.vue";
 import BaseButton from "./components/UI/BaseButton.vue";
-import store from "./store";
+import store from "./store/index";
 
 const app = createApp(App);
 
