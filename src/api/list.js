@@ -25,6 +25,8 @@ const _employees = [
   },
 ]
 
-export const getEmployees = (cb) => {
-  setTimeout(() => cb(_employees), 100)
+export default {
+  getEmployees(cb) {
+    setTimeout(() => cb(_employees), 100)
+  }
 }

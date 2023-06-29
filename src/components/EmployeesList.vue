@@ -28,6 +28,8 @@
 <script>
   import EmployeesTable from './EmployeesTable.vue';
   import EmployeeForm from './EmployeeForm.vue';
+  import store from '@/store';
+  import list from '../api/list'
 
   export default {
     components: {
@@ -38,8 +40,12 @@
       return {
         editing: false,
         formTitle: '',
-        employees: [],
         editingEmployee: null,
+      }
+    },
+    computed: {
+      employees() {
+        return store.state.employees
       }
     },
     methods: {
@@ -72,6 +78,11 @@
         }
       },
     },
+    created() {
+      list.getEmployees(employees => {
+        store.commit('setEmployees', employees)
+      })
+    }
   }
 </script>
 

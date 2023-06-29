@@ -1,16 +1,25 @@
 import { createStore } from 'vuex'
-//import { getEmployees } from '../api/employees'
+//import { getEmployees } from '../api/list'
 
 const store = createStore({
   state: { 
-          
+    employees: []
   },
-  getters: { // = computed properties       
+  mutations: { 
+    setEmployees (state, employees) {
+      state.employees = employees;
+    },    
   },
-  actions: { 
+  getters: {
 
   },
-  mutations: { // setting and updating the state       
+  actions: { 
+    /*getEmployees (context) {
+      return getEmployees()
+        .then(response => {
+          context.commit('setEmployees', response);
+        })
+    },*/
   },
 })
 
