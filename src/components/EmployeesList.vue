@@ -15,7 +15,6 @@
       @saveEditedEmployee="saveEditedEmployee" 
       @cancel="editing = false" 
       :formTitle="formTitle"
-      :editingEmployee="editingEmployee"
     />
     <employees-table
       @edit="editEmployee"
@@ -43,7 +42,11 @@
         loading: false,
         editing: false,
         formTitle: '',
-        editingEmployee: null,
+      }
+    },
+    computed: {
+      editingEmployee() {
+        return this.$store.state.editingEmployee
       }
     },
     methods: {
@@ -55,7 +58,7 @@
       editEmployee(currentEmployee) {
         this.editing = true;
         this.formTitle = 'Edit Employee';
-        this.editingEmployee = { ...currentEmployee };
+        this.$store.state.editingEmployee = { ...currentEmployee };
       },
       saveAddedEmployee(newEmployee) {
         this.$store.dispatch('saveAddedEmployee', newEmployee)

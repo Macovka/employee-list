@@ -56,10 +56,6 @@
         type: String,
         required: true,
       },
-      editingEmployee: {
-        type: Object,
-        default: null,
-      },
     },
     data() {
       return {
@@ -68,6 +64,9 @@
       };
     },
     computed: {
+      editingEmployee() {
+        return this.$store.state.editingEmployee
+      },
       isInvalid() {
         return (
           !this.newEmployee.firstName || 

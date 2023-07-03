@@ -4,6 +4,7 @@ import list from '../api/list'
 const store = createStore({
   state: { 
     employees: [],
+    editingEmployee: null,
   },
   mutations: { 
     setEmployees (state, employees) {
