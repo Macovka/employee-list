@@ -86,9 +86,9 @@
           return;
         }
         if (this.editingEmployee) {
-          this.$emit('saveEditedEmployee', this.newEmployee);
+          this.$store.dispatch('saveEditedEmployee', this.newEmployee)
         } else {
-          this.$emit('saveAddedEmployee', this.newEmployee);
+          this.$store.dispatch('saveAddedEmployee', this.newEmployee)
         }
       },
       cancelEdit() {

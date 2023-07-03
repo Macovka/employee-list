@@ -32,7 +32,7 @@
         this.$emit('edit', this.employee);
       },
       deleteEmployee() {
-        this.$emit('delete', this.employee);
+        this.$store.dispatch('deleteEmployee', this.employee);
       },
       unit(property) {
         return property === '1' ? ' year' : ' years'
