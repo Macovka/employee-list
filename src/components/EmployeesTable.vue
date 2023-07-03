@@ -19,7 +19,7 @@
         :employees="employees"
         :index="index"
         @edit="$emit('edit', employee)"
-        @remove="$emit('remove', employee)"
+        @delete="$emit('delete', employee)"
       />
     </tbody>
   </table>

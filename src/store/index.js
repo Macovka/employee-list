@@ -15,11 +15,11 @@ const store = createStore({
         id: state.employees.length + 1,
       });
     },
-    saveEditedEmployee(state, editedEmployee) {
+    updateEditedEmployee(state, editedEmployee) {
       const index = state.employees.findIndex(e => e.id === editedEmployee.id);
       state.employees[index] = editedEmployee;
     },
-    removeEmployee(state, currentEmployee) {
+    deleteEmployee(state, currentEmployee) {
       const index = state.employees.findIndex(e => e.id === currentEmployee.id);
       if (index !== -1) {
         state.employees.splice(index, 1);
@@ -42,10 +42,10 @@ const store = createStore({
       context.commit('pushAddedEmployee', newEmployee)
     },
     saveEditedEmployee(context, editedEmployee) {
-      context.commit('saveEditedEmployee', editedEmployee)
+      context.commit('updateEditedEmployee', editedEmployee)
     },
-    removeEmployee(context, currentEmployee) {
-      context.commit('removeEmployee', currentEmployee)
+    deleteEmployee(context, currentEmployee) {
+      context.commit('deleteEmployee', currentEmployee)
     },
   },
 })

@@ -20,7 +20,7 @@
     <employees-table
       :employees="employees"
       @edit="editEmployee"
-      @remove="removeEmployee"
+      @delete="deleteEmployee"
     />
     <img 
       v-if="loading" 
@@ -71,8 +71,8 @@
         this.$store.dispatch('saveEditedEmployee', editedEmployee)
         this.editing = false;
       },
-      removeEmployee(currentEmployee) {
-        this.$store.dispatch('removeEmployee', currentEmployee)
+      deleteEmployee(currentEmployee) {
+        this.$store.dispatch('deleteEmployee', currentEmployee)
       },
     },
     created() {

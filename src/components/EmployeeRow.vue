@@ -9,7 +9,7 @@
     <td>
       <div class="button-wrapper">
         <base-button @click="editEmployee">Edit</base-button>
-        <base-button @click="removeEmployee" class="btn btn-danger">Remove</base-button>
+        <base-button @click="deleteEmployee" class="btn btn-danger">Delete</base-button>
       </div>   
     </td>
   </tr>
@@ -31,8 +31,8 @@
       editEmployee() {
         this.$emit('edit', this.employee);
       },
-      removeEmployee() {
-        this.$emit('remove', this.employee);
+      deleteEmployee() {
+        this.$emit('delete', this.employee);
       },
       unit(property) {
         return property === '1' ? ' year' : ' years'
@@ -54,6 +54,6 @@
   .button-wrapper {
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 </style>
