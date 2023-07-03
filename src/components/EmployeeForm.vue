@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import {mapState} from 'vuex';
+  import {mapState, mapActions} from 'vuex';
 
   export default {
     data() {
@@ -68,15 +68,16 @@
       },
     },
     methods: {
+      ...mapActions(['saveEditedEmployee', 'saveAddedEmployee']),
       saveEmployee() {
         if (this.isInvalid) {
           this.$store.state.hasErr = true;
           return;
         }
         if (this.editingEmployee) {
-          this.$store.dispatch('saveEditedEmployee', this.newEmployee)
+          this.saveEditedEmployee(this.newEmployee)
         } else {
-          this.$store.dispatch('saveAddedEmployee', this.newEmployee)
+          this.saveAddedEmployee(this.newEmployee)
         }
       },
       cancelEdit() {

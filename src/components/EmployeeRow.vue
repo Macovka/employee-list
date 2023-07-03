@@ -8,14 +8,16 @@
     <td>{{ employee.address }}</td>
     <td>
       <div class="button-wrapper">
-        <base-button @click="editEmployee">Edit</base-button>
-        <base-button @click="deleteEmployee" class="btn btn-danger">Delete</base-button>
+        <base-button @click="editEmployee(employee)">Edit</base-button>
+        <base-button @click="deleteEmployee(employee)" class="btn btn-danger">Delete</base-button>
       </div>   
     </td>
   </tr>
 </template>
 
 <script>
+  import {mapActions} from 'vuex';
+
   export default {
     props: {
       employee: {
@@ -28,12 +30,7 @@
       },
     },
     methods: {
-      editEmployee() {
-        this.$store.dispatch('editEmployee', this.employee);
-      },
-      deleteEmployee() {
-        this.$store.dispatch('deleteEmployee', this.employee);
-      },
+      ...mapActions(['editEmployee', 'deleteEmployee']),
       unit(property) {
         return property === '1' ? ' year' : ' years'
       },
