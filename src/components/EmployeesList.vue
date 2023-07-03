@@ -22,6 +22,7 @@
 <script>
   import EmployeesTable from './EmployeesTable.vue';
   import EmployeeForm from './EmployeeForm.vue';
+  import {mapActions} from 'vuex';
 
   export default {
     components: {
@@ -39,13 +40,14 @@
       }
     },
     methods: {
-      addEmployee() {
-        this.$store.dispatch('addEmployee')
-      },
+      ...mapActions({
+        addEmployee: 'addEmployee', 
+        renderEmployees: 'fetchEmployees'
+      }),
     },
     created() {
       this.loading = true
-      this.$store.dispatch('fetchEmployees')
+      this.renderEmployees()
         .then(() => this.loading = false)
     }
   }
