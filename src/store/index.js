@@ -15,9 +15,12 @@ const store = createStore({
   },
   actions: { 
     fetchEmployees ({commit}) {
-      list.getEmployees(employees => {
-        commit('setEmployees', employees)
-      })
+      return new Promise((resolve) => {
+        list.getEmployees(employees => {
+          commit('setEmployees', employees)
+          resolve()
+        })
+      })      
     },
   },
 })

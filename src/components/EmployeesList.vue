@@ -22,6 +22,11 @@
       @edit="editEmployee"
       @remove="removeEmployee"
     />
+    <img 
+      v-if="loading" 
+      src="https://i.imgur.com/JfPpwOA.gif" 
+      alt="loading..."
+    >
   </div>
 </template>
 
@@ -37,6 +42,7 @@
     },
     data() {
       return {
+        loading: false,
         editing: false,
         formTitle: '',
         editingEmployee: null,
@@ -78,7 +84,9 @@
       },
     },
     created() {
+      this.loading = true
       store.dispatch('fetchEmployees')
+        .then(() => this.loading = false)
     }
   }
 </script>
