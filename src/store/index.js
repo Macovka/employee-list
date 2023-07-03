@@ -54,20 +54,20 @@ const store = createStore({
         })
       })      
     },
-    saveAddedEmployee(context, newEmployee) {
-      context.commit('pushAddedEmployee', newEmployee)
+    saveAddedEmployee({commit}, newEmployee) {
+      commit('pushAddedEmployee', newEmployee)
     },
-    saveEditedEmployee(context, editedEmployee) {
-      context.commit('updateEditedEmployee', editedEmployee)
+    saveEditedEmployee({commit}, editedEmployee) {
+      commit('updateEditedEmployee', editedEmployee)
     },
-    deleteEmployee(context, currentEmployee) {
-      context.commit('deleteEmployee', currentEmployee)
+    deleteEmployee({commit}, currentEmployee) {
+      commit('deleteEmployee', currentEmployee)
     },
-    addEmployee(context) {
-      context.commit('addEmployee')
+    addEmployee({commit}) {
+      commit('addEmployee')
     },
-    editEmployee(context, currentEmployee) {
-      context.commit('editEmployee', currentEmployee)
+    editEmployee({commit}, currentEmployee) {
+      commit('editEmployee', currentEmployee)
     },
   },
 })

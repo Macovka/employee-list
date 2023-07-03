@@ -45,22 +45,16 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex';
+
   export default {
     data() {
       return {
         newEmployee: {},
       };
     },
-    computed: {
-      formTitle() {
-        return this.$store.state.formTitle
-      },
-      editingEmployee() {
-        return this.$store.state.editingEmployee
-      },
-      hasErr() {
-        return this.$store.state.hasErr
-      },
+    computed: {  
+      ...mapState(['formTitle', 'editingEmployee', 'hasErr']),
       isInvalid() {
         return (
           !this.newEmployee.firstName || 
