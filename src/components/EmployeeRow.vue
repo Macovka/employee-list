@@ -29,7 +29,7 @@
     },
     methods: {
       editEmployee() {
-        this.$emit('edit', this.employee);
+        this.$store.dispatch('editEmployee', this.employee);
       },
       deleteEmployee() {
         this.$store.dispatch('deleteEmployee', this.employee);

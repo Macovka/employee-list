@@ -51,12 +51,6 @@
 
 <script>
   export default {
-    props: {
-      formTitle: {
-        type: String,
-        required: true,
-      },
-    },
     data() {
       return {
         newEmployee: {},
@@ -64,6 +58,9 @@
       };
     },
     computed: {
+      formTitle() {
+        return this.$store.state.formTitle
+      },
       editingEmployee() {
         return this.$store.state.editingEmployee
       },
@@ -93,11 +90,11 @@
       },
       cancelEdit() {
         this.hasErr = false;
-        this.$emit('cancel');
+        this.$store.state.editing = false;
       },
       closeModal(event) {
         if (event.target === event.currentTarget) {
-          this.$emit('cancel');
+          this.$store.state.editing = false;
         }
       },
       onFocus() {

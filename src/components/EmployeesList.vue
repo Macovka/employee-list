@@ -9,17 +9,8 @@
         Add Employee
       </base-button>
     </div>
-    <employee-form 
-      v-if="editing" 
-      @saveAddedEmployee="saveAddedEmployee" 
-      @saveEditedEmployee="saveEditedEmployee" 
-      @cancel="$store.state.editing = false" 
-      :formTitle="formTitle"
-    />
-    <employees-table
-      @edit="editEmployee"
-      @delete="deleteEmployee"
-    />
+    <employee-form v-if="editing" />
+    <employees-table />
     <img 
       v-if="loading" 
       src="https://i.imgur.com/JfPpwOA.gif" 
@@ -40,27 +31,16 @@
     data() {
       return {
         loading: false,
-        formTitle: '',
       }
     },
     computed: {
-      editingEmployee() {
-        return this.$store.state.editingEmployee
-      },
       editing() {
         return this.$store.state.editing
       }
     },
     methods: {
       addEmployee() {
-        this.$store.state.editingEmployee = null
-        this.$store.state.editing = true;
-        this.formTitle = 'New Employee'
-      },
-      editEmployee(currentEmployee) {
-        this.$store.state.editing = true;
-        this.formTitle = 'Edit Employee';
-        this.$store.state.editingEmployee = { ...currentEmployee };
+        this.$store.dispatch('addEmployee')
       },
     },
     created() {

@@ -17,7 +17,6 @@
         :key="employee.id"
         :employee="employee"
         :index="index"
-        @edit="$emit('edit', employee)"
       />
       <tr>
         <td colspan="7" class="table__total">Total: {{ employees.length }}</td>

@@ -6,6 +6,7 @@ const store = createStore({
     employees: [],
     editingEmployee: null,
     editing: false,
+    formTitle: '',
   },
   mutations: { 
     setEmployees (state, employees) {
@@ -29,6 +30,16 @@ const store = createStore({
         state.employees.splice(index, 1);
       }
     },
+    addEmployee(state) {
+      state.editingEmployee = null
+      state.editing = true;
+      state.formTitle = 'New Employee'
+    },
+    editEmployee(state, currentEmployee) {
+      state.editing = true;
+      state.formTitle = 'Edit Employee';
+      state.editingEmployee = { ...currentEmployee };
+    },
   },
   getters: {
 
@@ -50,6 +61,12 @@ const store = createStore({
     },
     deleteEmployee(context, currentEmployee) {
       context.commit('deleteEmployee', currentEmployee)
+    },
+    addEmployee(context) {
+      context.commit('addEmployee')
+    },
+    editEmployee(context, currentEmployee) {
+      context.commit('editEmployee', currentEmployee)
     },
   },
 })
