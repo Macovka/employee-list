@@ -7,6 +7,7 @@ const store = createStore({
     editingEmployee: null,
     editing: false,
     formTitle: '',
+    hasErr: false
   },
   mutations: { 
     setEmployees (state, employees) {

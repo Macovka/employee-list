@@ -9,35 +9,30 @@
             v-model="newEmployee.firstName" 
             placeholder="First Name" 
             type="text"
-            @focus.prevent="onFocus"
           />
           <base-input 
             :class="{'err': hasErr && !newEmployee.lastName}"
             v-model="newEmployee.lastName" 
             placeholder="Last Name" 
             type="text"
-            @focus.prevent="onFocus"
           />
           <base-input 
             :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience === undefined)}"
             v-model="newEmployee.experience" 
             placeholder="Experience" 
             type="number"
-            @focus.prevent="onFocus"
           />
           <base-input 
             :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age === undefined)}"
             v-model="newEmployee.age" 
             placeholder="Age" 
             type="number"
-            @focus.prevent="onFocus"
           />
           <base-input 
             :class="{'err': hasErr && !newEmployee.address}"
             v-model="newEmployee.address" 
             placeholder="Address" 
             type="text"
-            @focus.prevent="onFocus"
           />
         </div>
         <div class="modal-container__buttons-wrapper">
@@ -54,7 +49,6 @@
     data() {
       return {
         newEmployee: {},
-        hasErr: false
       };
     },
     computed: {
@@ -63,6 +57,9 @@
       },
       editingEmployee() {
         return this.$store.state.editingEmployee
+      },
+      hasErr() {
+        return this.$store.state.hasErr
       },
       isInvalid() {
         return (
@@ -79,7 +76,7 @@
     methods: {
       saveEmployee() {
         if (this.isInvalid) {
-          this.hasErr = true;
+          this.$store.state.hasErr = true;
           return;
         }
         if (this.editingEmployee) {
@@ -89,7 +86,7 @@
         }
       },
       cancelEdit() {
-        this.hasErr = false;
+        this.$store.state.hasErr = false;
         this.$store.state.editing = false;
       },
       closeModal(event) {
@@ -97,9 +94,6 @@
           this.$store.state.editing = false;
         }
       },
-      onFocus() {
-        if(this.hasErr) this.hasErr = false
-      }
     },
     created() {
       if (this.editingEmployee) {
