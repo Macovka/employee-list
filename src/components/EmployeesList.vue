@@ -58,28 +58,21 @@
         this.editing = true;
         this.formTitle = 'New Employee'
       },
-      editEmployee(employee) {
+      editEmployee(currentEmployee) {
         this.editing = true;
         this.formTitle = 'Edit Employee';
-        this.editingEmployee = { ...employee };
+        this.editingEmployee = { ...currentEmployee };
       },
       saveAddedEmployee(newEmployee) {
-        this.employees.push({
-          ...newEmployee,
-          id: this.employees.length + 1,
-        });
+        this.$store.dispatch('saveAddedEmployee', newEmployee)
         this.editing = false;
       },
       saveEditedEmployee(editedEmployee) {
-        const index = this.employees.findIndex(e => e.id === editedEmployee.id);
-          this.employees[index] = editedEmployee;
+        this.$store.dispatch('saveEditedEmployee', editedEmployee)
         this.editing = false;
       },
-      removeEmployee(employee) {
-        const index = this.employees.findIndex(e => e.id === employee.id);
-        if (index !== -1) {
-          this.employees.splice(index, 1);
-        }
+      removeEmployee(currentEmployee) {
+        this.$store.dispatch('removeEmployee', currentEmployee)
       },
     },
     created() {
