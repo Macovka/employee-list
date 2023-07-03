@@ -33,7 +33,6 @@
 <script>
   import EmployeesTable from './EmployeesTable.vue';
   import EmployeeForm from './EmployeeForm.vue';
-  import store from '@/store';
 
   export default {
     components: {
@@ -50,7 +49,7 @@
     },
     computed: {
       employees() {
-        return store.state.employees
+        return this.$store.state.employees
       }
     },
     methods: {
@@ -85,7 +84,7 @@
     },
     created() {
       this.loading = true
-      store.dispatch('fetchEmployees')
+      this.$store.dispatch('fetchEmployees')
         .then(() => this.loading = false)
     }
   }
