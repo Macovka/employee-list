@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-//import { getEmployees } from '../api/list'
+import list from '../api/list'
 
 const store = createStore({
   state: { 
@@ -14,12 +14,11 @@ const store = createStore({
 
   },
   actions: { 
-    /*getEmployees (context) {
-      return getEmployees()
-        .then(response => {
-          context.commit('setEmployees', response);
-        })
-    },*/
+    fetchEmployees ({commit}) {
+      list.getEmployees(employees => {
+        commit('setEmployees', employees)
+      })
+    },
   },
 })
 

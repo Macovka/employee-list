@@ -29,7 +29,6 @@
   import EmployeesTable from './EmployeesTable.vue';
   import EmployeeForm from './EmployeeForm.vue';
   import store from '@/store';
-  import list from '../api/list'
 
   export default {
     components: {
@@ -79,9 +78,7 @@
       },
     },
     created() {
-      list.getEmployees(employees => {
-        store.commit('setEmployees', employees)
-      })
+      store.dispatch('fetchEmployees')
     }
   }
 </script>
