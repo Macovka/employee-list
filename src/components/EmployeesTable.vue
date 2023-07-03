@@ -16,11 +16,13 @@
         v-for="(employee, index) in employees"
         :key="employee.id"
         :employee="employee"
-        :employees="employees"
         :index="index"
         @edit="$emit('edit', employee)"
         @delete="$emit('delete', employee)"
       />
+      <tr>
+        <td colspan="7" class="table__total">Total: {{ employees.length }}</td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -32,11 +34,10 @@
     components: {
       EmployeeRow,
     },
-    props: {
-      employees: {
-        type: Array,
-        required: true,
-      },
+    computed: {
+      employees() {
+        return this.$store.state.employees
+      }
     },
   };
 </script>
@@ -48,16 +49,16 @@
     padding: 20px;
     margin: auto;
   }
-  .table td {
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
-  }
 
   .table th {
     background-color: #f2f2f2;
     border: 1px solid #000;
     padding: 8px;
+  }
+  .table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
   }
 
   .table__number{
@@ -77,5 +78,11 @@
 
   .table__actions {
     width: 182px;
+  }
+
+  table tbody .table__total {
+    text-align: right;
+    padding-right: 40px;
+    font-weight: bold;
   }
 </style>

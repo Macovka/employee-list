@@ -18,7 +18,6 @@
       :editingEmployee="editingEmployee"
     />
     <employees-table
-      :employees="employees"
       @edit="editEmployee"
       @delete="deleteEmployee"
     />
@@ -45,11 +44,6 @@
         editing: false,
         formTitle: '',
         editingEmployee: null,
-      }
-    },
-    computed: {
-      employees() {
-        return this.$store.state.employees
       }
     },
     methods: {
