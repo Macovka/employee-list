@@ -5,6 +5,7 @@ const store = createStore({
   state: { 
     employees: [],
     editingEmployee: null,
+    editing: false,
   },
   mutations: { 
     setEmployees (state, employees) {
@@ -15,10 +16,12 @@ const store = createStore({
         ...newEmployee,
         id: state.employees.length + 1,
       });
+      state.editing = false;
     },
     updateEditedEmployee(state, editedEmployee) {
       const index = state.employees.findIndex(e => e.id === editedEmployee.id);
       state.employees[index] = editedEmployee;
+      state.editing = false;
     },
     deleteEmployee(state, currentEmployee) {
       const index = state.employees.findIndex(e => e.id === currentEmployee.id);

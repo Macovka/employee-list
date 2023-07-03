@@ -13,7 +13,7 @@
       v-if="editing" 
       @saveAddedEmployee="saveAddedEmployee" 
       @saveEditedEmployee="saveEditedEmployee" 
-      @cancel="editing = false" 
+      @cancel="this.$store.state.editing = false" 
       :formTitle="formTitle"
     />
     <employees-table
@@ -40,33 +40,33 @@
     data() {
       return {
         loading: false,
-        editing: false,
         formTitle: '',
       }
     },
     computed: {
       editingEmployee() {
         return this.$store.state.editingEmployee
+      },
+      editing() {
+        return this.$store.state.editing
       }
     },
     methods: {
       addEmployee() {
-        this.editingEmployee = null
-        this.editing = true;
+        this.$store.state.editingEmployee = null
+        this.$store.state.editing = true;
         this.formTitle = 'New Employee'
       },
       editEmployee(currentEmployee) {
-        this.editing = true;
+        this.$store.state.editing = true;
         this.formTitle = 'Edit Employee';
         this.$store.state.editingEmployee = { ...currentEmployee };
       },
       saveAddedEmployee(newEmployee) {
         this.$store.dispatch('saveAddedEmployee', newEmployee)
-        this.editing = false;
       },
       saveEditedEmployee(editedEmployee) {
         this.$store.dispatch('saveEditedEmployee', editedEmployee)
-        this.editing = false;
       },
       deleteEmployee(currentEmployee) {
         this.$store.dispatch('deleteEmployee', currentEmployee)
