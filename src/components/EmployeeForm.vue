@@ -54,7 +54,11 @@
       };
     },
     computed: {  
-      ...mapState(['formTitle', 'editingEmployee', 'hasErr']),
+      ...mapState({
+        formTitle: state => state.form.formTitle,
+        hasErr: state => state.form.hasErr,
+        editingEmployee: state => state.form.editingEmployee,
+      }),
       isInvalid() {
         return (
           !this.newEmployee.firstName || 
@@ -68,7 +72,7 @@
       },
     },
     methods: {
-      ...mapActions(['saveEditedEmployee', 'saveAddedEmployee', 'cancelEdit']),
+      ...mapActions(['saveEditedEmployee', 'saveAddedEmployee', 'cancelEdit', 'closeModal']),
       saveEmployee() {
         if (this.isInvalid) {
           this.$store.commit('setHasErrValue', true);
@@ -78,11 +82,6 @@
           this.saveEditedEmployee(this.newEmployee)
         } else {
           this.saveAddedEmployee(this.newEmployee)
-        }
-      },
-      closeModal(event) {
-        if (event.target === event.currentTarget) {
-          this.$store.commit('setEditingValue', false);
         }
       },
     },

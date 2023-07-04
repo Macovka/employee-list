@@ -29,19 +29,12 @@
         default: '',
       },
     },
-    computed: {
-      hasErr() {
-        return this.$store.state.hasErr
-      },
-    },
     methods: {
       updateInput(event) {
         this.$emit("update:modelValue", event.target.value);
       },
       onFocus() {
-        if(this.hasErr) {
-          this.$store.commit('setHasErrValue', false);
-        }
+        this.$store.commit('setHasErrValue', false);
       }
     }
   };

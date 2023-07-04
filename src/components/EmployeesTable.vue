@@ -34,7 +34,7 @@
     },
     computed: {
       employees() {
-        return this.$store.state.employees
+        return this.$store.state.list.employees
       }
     },
   };
