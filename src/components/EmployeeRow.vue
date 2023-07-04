@@ -30,7 +30,9 @@
       },
     },
     methods: {
-      ...mapActions(['editEmployee', 'deleteEmployee']),
+      ...mapActions({
+        editEmployee: 'form/editEmployee', 
+        deleteEmployee: 'list/deleteEmployee'}),
       unit(property) {
         return property === '1' ? ' year' : ' years'
       },

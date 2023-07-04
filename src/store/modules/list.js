@@ -1,6 +1,7 @@
 import api from '../../api/api'
 
 export default {
+  namespaced: true,
   state: {
     employees: [],
   },
@@ -36,11 +37,11 @@ export default {
     },
     saveAddedEmployee({commit}, newEmployee) {
       commit('pushAddedEmployee', newEmployee);
-      commit('setEditingValue', false);
+      commit('setEditingValue', false, {root: true});
     },
     saveEditedEmployee({commit}, editedEmployee) {
       commit('updateEditingEmployee', editedEmployee);
-      commit('setEditingValue', false);
+      commit('setEditingValue', false, {root: true});
     },
     deleteEmployee({commit}, currentEmployee) {
       commit('deleteEmployee', currentEmployee)

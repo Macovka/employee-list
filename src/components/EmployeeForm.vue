@@ -45,7 +45,7 @@
 </template>
 
 <script>
-  import {mapState, mapActions} from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     data() {
@@ -54,10 +54,10 @@
       };
     },
     computed: {  
-      ...mapState({
-        formTitle: state => state.form.formTitle,
-        hasErr: state => state.form.hasErr,
-        editingEmployee: state => state.form.editingEmployee,
+      ...mapState('form', {
+        formTitle: state => state.formTitle,
+        hasErr: state => state.hasErr,
+        editingEmployee: state => state.editingEmployee,
       }),
       isInvalid() {
         return (
@@ -72,10 +72,11 @@
       },
     },
     methods: {
-      ...mapActions(['saveEditedEmployee', 'saveAddedEmployee', 'cancelEdit', 'closeModal']),
+      ...mapActions('list', ['saveEditedEmployee', 'saveAddedEmployee']),
+      ...mapActions('form', ['cancelEdit', 'closeModal']),
       saveEmployee() {
         if (this.isInvalid) {
-          this.$store.commit('setHasErrValue', true);
+          this.$store.commit('form/setHasErrValue', true);
           return;
         }
         if (this.editingEmployee) {

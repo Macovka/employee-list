@@ -41,9 +41,9 @@
     },
     methods: {
       ...mapActions({
-        addEmployee: 'addEmployee', 
-        renderEmployees: 'fetchEmployees'
-      }),
+        addEmployee: 'form/addEmployee', 
+        renderEmployees: 'list/fetchEmployees'
+      }),  
     },
     created() {
       this.loading = true
