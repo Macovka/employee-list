@@ -39,7 +39,9 @@
         this.$emit("update:modelValue", event.target.value);
       },
       onFocus() {
-        if(this.hasErr) this.$store.state.hasErr = false
+        if(this.hasErr) {
+          this.$store.commit('setHasErrValue', false);
+        }
       }
     }
   };

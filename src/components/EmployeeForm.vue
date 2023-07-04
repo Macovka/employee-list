@@ -71,7 +71,7 @@
       ...mapActions(['saveEditedEmployee', 'saveAddedEmployee']),
       saveEmployee() {
         if (this.isInvalid) {
-          this.$store.state.hasErr = true;
+          this.$store.commit('setHasErrValue', true);
           return;
         }
         if (this.editingEmployee) {
@@ -81,12 +81,12 @@
         }
       },
       cancelEdit() {
-        this.$store.state.hasErr = false;
-        this.$store.state.editing = false;
+        this.$store.commit('setHasErrValue', false);
+        this.$store.commit('setEditingValue', false);
       },
       closeModal(event) {
         if (event.target === event.currentTarget) {
-          this.$store.state.editing = false;
+          this.$store.commit('setEditingValue', false);
         }
       },
     },

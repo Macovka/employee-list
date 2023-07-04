@@ -41,9 +41,12 @@ const store = createStore({
       state.formTitle = 'Edit Employee';
       state.editingEmployee = { ...currentEmployee };
     },
-  },
-  getters: {
-
+    setHasErrValue(state, value) {
+      state.hasErr = value;
+    },
+    setEditingValue(state, value) {
+      state.editing = value;
+    },
   },
   actions: { 
     fetchEmployees ({commit}) {
