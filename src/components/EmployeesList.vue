@@ -16,13 +16,14 @@
       src="https://i.imgur.com/JfPpwOA.gif" 
       alt="loading..."
     >
+    <p v-if="isError">Oops, something went wrong.</p>
   </div>
 </template>
 
 <script>
   import EmployeesTable from './EmployeesTable.vue';
   import EmployeeForm from './EmployeeForm.vue';
-  import {mapActions} from 'vuex';
+  import { mapState, mapActions } from 'vuex';
 
   export default {
     components: {
@@ -35,14 +36,15 @@
       }
     },
     computed: {
-      editing() {
-        return this.$store.state.editing
-      }
+      ...mapState({
+        editing: state => state.editing,
+        isError: state => state.list.isError,
+      }),
     },
     methods: {
       ...mapActions({
         addEmployee: 'form/addEmployee', 
-        renderEmployees: 'list/fetchEmployees'
+        renderEmployees: 'list/getEmployees'
       }),  
     },
     created() {

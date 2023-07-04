@@ -1,13 +1,17 @@
-import api from '../../api/api'
+import { fetchEmployees } from '../../api/api'
 
 export default {
   namespaced: true,
   state: {
     employees: [],
+    isError: false,
   },
   mutations: {
     setEmployees (state, employees) {
       state.employees = employees;
+    },
+    setError(state) {
+      state.isError = true;
     },
     pushAddedEmployee(state, newEmployee) {
       state.employees.push({
@@ -27,13 +31,14 @@ export default {
     },
   },
   actions: {
-    fetchEmployees ({commit}) {
-      return new Promise((resolve) => {
-        api.getEmployees(employees => {
-          commit('setEmployees', employees)
-          resolve()
+    getEmployees ({commit}) { 
+      return fetchEmployees()
+        .then(response => {
+          commit('setEmployees', response);
         })
-      })      
+        .catch(error => {
+          commit('setError', error);
+        })    
     },
     saveAddedEmployee({commit}, newEmployee) {
       commit('pushAddedEmployee', newEmployee);
