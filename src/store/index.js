@@ -72,6 +72,10 @@ const store = createStore({
     editEmployee({commit}, currentEmployee) {
       commit('editEmployee', currentEmployee)
     },
+    cancelEdit({commit}) {
+      commit('setHasErrValue', false);
+      commit('setEditingValue', false);
+    },
   },
 })
 

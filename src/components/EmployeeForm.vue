@@ -68,7 +68,7 @@
       },
     },
     methods: {
-      ...mapActions(['saveEditedEmployee', 'saveAddedEmployee']),
+      ...mapActions(['saveEditedEmployee', 'saveAddedEmployee', 'cancelEdit']),
       saveEmployee() {
         if (this.isInvalid) {
           this.$store.commit('setHasErrValue', true);
@@ -79,10 +79,6 @@
         } else {
           this.saveAddedEmployee(this.newEmployee)
         }
-      },
-      cancelEdit() {
-        this.$store.commit('setHasErrValue', false);
-        this.$store.commit('setEditingValue', false);
       },
       closeModal(event) {
         if (event.target === event.currentTarget) {
