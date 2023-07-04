@@ -18,12 +18,10 @@ const store = createStore({
         ...newEmployee,
         id: state.employees.length + 1,
       });
-      state.editing = false;
     },
     updateEditedEmployee(state, editedEmployee) {
       const index = state.employees.findIndex(e => e.id === editedEmployee.id);
       state.employees[index] = editedEmployee;
-      state.editing = false;
     },
     deleteEmployee(state, currentEmployee) {
       const index = state.employees.findIndex(e => e.id === currentEmployee.id);
@@ -31,21 +29,17 @@ const store = createStore({
         state.employees.splice(index, 1);
       }
     },
-    addEmployee(state) {
-      state.editingEmployee = null
-      state.editing = true;
-      state.formTitle = 'New Employee'
-    },
-    editEmployee(state, currentEmployee) {
-      state.editing = true;
-      state.formTitle = 'Edit Employee';
-      state.editingEmployee = { ...currentEmployee };
-    },
     setHasErrValue(state, value) {
       state.hasErr = value;
     },
     setEditingValue(state, value) {
       state.editing = value;
+    },
+    setFormTitle(state, title) {
+      state.formTitle = title;
+    },
+    setEditingEmployee(state, value) {
+      state.editingEmployee = value;
     },
   },
   actions: { 
@@ -58,19 +52,25 @@ const store = createStore({
       })      
     },
     saveAddedEmployee({commit}, newEmployee) {
-      commit('pushAddedEmployee', newEmployee)
+      commit('pushAddedEmployee', newEmployee);
+      commit('setEditingValue', false);
     },
     saveEditedEmployee({commit}, editedEmployee) {
-      commit('updateEditedEmployee', editedEmployee)
+      commit('updateEditedEmployee', editedEmployee);
+      commit('setEditingValue', false);
     },
     deleteEmployee({commit}, currentEmployee) {
       commit('deleteEmployee', currentEmployee)
     },
     addEmployee({commit}) {
-      commit('addEmployee')
+      commit('setEditingValue', true);
+      commit('setFormTitle', 'New Employee');
+      commit('setEditingEmployee', null);
     },
     editEmployee({commit}, currentEmployee) {
-      commit('editEmployee', currentEmployee)
+      commit('setEditingValue', true);
+      commit('setFormTitle', 'Edit Employee');
+      commit('setEditingEmployee', { ...currentEmployee });
     },
     cancelEdit({commit}) {
       commit('setHasErrValue', false);
