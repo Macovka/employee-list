@@ -34,7 +34,7 @@ export default {
     getEmployees ({commit}) { 
       return fetchEmployees()
         .then(response => {
-          commit('setEmployees', response);
+          commit('setEmployees', response.results);
         })
         .catch(error => {
           commit('setError', error);

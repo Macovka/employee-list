@@ -37,6 +37,9 @@
         return this.$store.state.list.employees
       }
     },
+    created() {
+        console.log(this.employees)
+    }
   };
 </script>
 

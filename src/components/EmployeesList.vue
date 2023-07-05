@@ -18,8 +18,7 @@
         src="https://i.imgur.com/JfPpwOA.gif" 
         alt="loading..."
       >   
-    </div>
-    
+    </div>   
   </div>
 </template>
 
