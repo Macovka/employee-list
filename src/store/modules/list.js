@@ -8,7 +8,7 @@ export default {
   },
   mutations: {
     setEmployees (state, employees) {
-      state.employees = employees;
+      state.employees = [...employees];
     },
     setError(state) {
       state.isError = true;

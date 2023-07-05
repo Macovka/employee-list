@@ -8,13 +8,11 @@
             :class="{'err': hasErr && !newEmployee.name.first}"
             v-model="newEmployee.name.first" 
             placeholder="First Name" 
-            type="text"
           />
           <base-input 
             :class="{'err': hasErr && !newEmployee.name.last}"
             v-model="newEmployee.name.last" 
             placeholder="Last Name" 
-            type="text"
           />
           <base-input 
             :class="{'err': hasErr && (newEmployee.registered.age < 0 || newEmployee.registered.age === '')}"
@@ -32,7 +30,6 @@
             :class="{'err': hasErr && !newEmployee.email}"
             v-model="newEmployee.email" 
             placeholder="Email" 
-            type="text"
           />
         </div>
         <div class="modal-container__buttons-wrapper">
