@@ -17,13 +17,13 @@
             type="text"
           />
           <base-input 
-            :class="{'err': hasErr && (newEmployee.registered.age < 0 || newEmployee.registered.age === null)}"
+            :class="{'err': hasErr && (newEmployee.registered.age < 0 || newEmployee.registered.age === '')}"
             v-model="newEmployee.registered.age" 
             placeholder="Experience" 
             type="number"
           />
           <base-input 
-            :class="{'err': hasErr && (newEmployee.dob.age < 0 || newEmployee.dob.age === null)}"
+            :class="{'err': hasErr && (newEmployee.dob.age < 0 || newEmployee.dob.age === '')}"
             v-model="newEmployee.dob.age" 
             placeholder="Age" 
             type="number"
@@ -56,10 +56,10 @@
             last: '',
           },
           registered: {
-            age: null,
+            age: '',
           },
           dob: {
-            age: null,
+            age: '',
           },
           email: '',
         },
@@ -76,9 +76,9 @@
           !this.newEmployee.name.first || 
           !this.newEmployee.name.last || 
           this.newEmployee.registered.age < 0 || 
-          this.newEmployee.registered.age === null || 
+          this.newEmployee.registered.age === '' || 
           this.newEmployee.dob.age < 0 || 
-          this.newEmployee.dob.age === null || 
+          this.newEmployee.dob.age === '' || 
           !this.newEmployee.email
         );
       },
