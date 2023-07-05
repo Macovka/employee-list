@@ -5,33 +5,33 @@
         <h2>{{ formTitle }}</h2>
         <div class="modal-container__inputs-wrapper">
           <base-input 
-            :class="{'err': hasErr && !newEmployee.firstName}"
-            v-model="newEmployee.firstName" 
+            :class="{'err': hasErr && !newEmployee.name.first}"
+            v-model="newEmployee.name.first" 
             placeholder="First Name" 
             type="text"
           />
           <base-input 
-            :class="{'err': hasErr && !newEmployee.lastName}"
-            v-model="newEmployee.lastName" 
+            :class="{'err': hasErr && !newEmployee.name.last}"
+            v-model="newEmployee.name.last" 
             placeholder="Last Name" 
             type="text"
           />
           <base-input 
-            :class="{'err': hasErr && (newEmployee.experience < 0 || newEmployee.experience === undefined)}"
-            v-model="newEmployee.experience" 
+            :class="{'err': hasErr && (newEmployee.registered.age < 0 || newEmployee.registered.age === null)}"
+            v-model="newEmployee.registered.age" 
             placeholder="Experience" 
             type="number"
           />
           <base-input 
-            :class="{'err': hasErr && (newEmployee.age < 0 || newEmployee.age === undefined)}"
-            v-model="newEmployee.age" 
+            :class="{'err': hasErr && (newEmployee.dob.age < 0 || newEmployee.dob.age === null)}"
+            v-model="newEmployee.dob.age" 
             placeholder="Age" 
             type="number"
           />
           <base-input 
-            :class="{'err': hasErr && !newEmployee.address}"
-            v-model="newEmployee.address" 
-            placeholder="Address" 
+            :class="{'err': hasErr && !newEmployee.email}"
+            v-model="newEmployee.email" 
+            placeholder="Email" 
             type="text"
           />
         </div>
@@ -50,7 +50,19 @@
   export default {
     data() {
       return {
-        newEmployee: {},
+        newEmployee: {
+          name: {
+            first: '',
+            last: '',
+          },
+          registered: {
+            age: null,
+          },
+          dob: {
+            age: null,
+          },
+          email: '',
+        },
       };
     },
     computed: {  
@@ -61,13 +73,13 @@
       }),
       isInvalid() {
         return (
-          !this.newEmployee.firstName || 
-          !this.newEmployee.lastName || 
-          this.newEmployee.experience < 0 || 
-          this.newEmployee.experience === undefined || 
-          this.newEmployee.age < 0 || 
-          this.newEmployee.age === undefined || 
-          !this.newEmployee.address
+          !this.newEmployee.name.first || 
+          !this.newEmployee.name.last || 
+          this.newEmployee.registered.age < 0 || 
+          this.newEmployee.registered.age === null || 
+          this.newEmployee.dob.age < 0 || 
+          this.newEmployee.dob.age === null || 
+          !this.newEmployee.email
         );
       },
     },

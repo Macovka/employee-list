@@ -7,14 +7,14 @@
         <th class="table__lastname">Last Name</th>
         <th class="table__experience">Experience</th>
         <th class="table__age">Age</th>
-        <th class="table__address">Address</th>
+        <th class="table__address">Email</th>
         <th class="table__actions">Actions</th>
       </tr>
     </thead>
     <tbody>
       <employee-row
         v-for="(employee, index) in employees"
-        :key="employee.id"
+        :key="employee.id.value"
         :employee="employee"
         :index="index"
       />
@@ -37,9 +37,6 @@
         return this.$store.state.list.employees
       }
     },
-    created() {
-        console.log(this.employees)
-    }
   };
 </script>
 

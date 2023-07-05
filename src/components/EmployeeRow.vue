@@ -1,11 +1,11 @@
 <template>
   <tr>
     <td>{{ index + 1 }}</td>
-    <td>{{ employee.firstName }}</td>
-    <td>{{ employee.lastName }}</td>
-    <td>{{ employee.experience }} {{ unit(employee.experience) }}</td>
-    <td>{{ employee.age }} {{ unit(employee.age) }}</td>
-    <td>{{ employee.address }}</td>
+    <td>{{ employee.name.first }}</td>
+    <td>{{ employee.name.last }}</td>
+    <td>{{ employee.registered.age }} {{ unit(employee.registered.age ) }}</td>
+    <td>{{ employee.dob.age }} {{ unit(employee.dob.age) }}</td>
+    <td>{{ employee.email }}</td>
     <td>
       <div class="button-wrapper">
         <base-button @click="editEmployee(employee)">Edit</base-button>
@@ -34,7 +34,7 @@
         editEmployee: 'form/editEmployee', 
         deleteEmployee: 'list/deleteEmployee'}),
       unit(property) {
-        return property === '1' ? ' year' : ' years'
+        return property === 1 ? ' year' : ' years'
       },
     },
   };
