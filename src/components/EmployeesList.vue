@@ -3,20 +3,23 @@
     <div class="header-wrapper">
       <h1 class="header">Employees List</h1>
       <base-button 
-        v-if="!editing" 
+        v-if="!editing && !isError" 
         @click="addEmployee"
       >
         Add Employee
       </base-button>
     </div>
-    <employee-form v-if="editing" />
-    <employees-table />
-    <img 
-      v-if="loading" 
-      src="https://i.imgur.com/JfPpwOA.gif" 
-      alt="loading..."
-    >
     <p v-if="isError">Oops, something went wrong.</p>
+    <div v-else>
+      <employee-form v-if="editing" />
+      <employees-table />
+      <img 
+        v-if="loading" 
+        src="https://i.imgur.com/JfPpwOA.gif" 
+        alt="loading..."
+      >   
+    </div>
+    
   </div>
 </template>
 
