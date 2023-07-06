@@ -7,7 +7,7 @@ export default {
   },
   mutations: {
     setEmployees (state, employees) {
-      state.employees = employees;
+      state.employees = [...employees];
     },
     pushAddedEmployee(state, newEmployee) {
       state.employees.push({
