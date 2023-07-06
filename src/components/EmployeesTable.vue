@@ -12,6 +12,15 @@
       </tr>
     </thead>
     <tbody>
+      <tr v-if="isLoading">
+        <td colspan="7">
+          <img 
+            class="spinner" 
+            src="https://i.imgur.com/JfPpwOA.gif" 
+            alt="loading..."
+          >
+      </td>
+      </tr> 
       <employee-row
         v-for="(employee, index) in employees"
         :key="employee.id.value"
@@ -27,15 +36,17 @@
 
 <script>
   import EmployeeRow from './EmployeeRow.vue';
+  import { mapState } from 'vuex';
 
   export default {
     components: {
       EmployeeRow,
     },
     computed: {
-      employees() {
-        return this.$store.state.list.employees
-      }
+      ...mapState('list', {
+        employees: state => state.employees,
+        isLoading: state => state.isLoading,
+      }),
     },
   };
 </script>
@@ -56,7 +67,6 @@
   .table td {
     border: 1px solid #000;
     padding: 8px;
-    text-align: left;
   }
 
   .table__number{

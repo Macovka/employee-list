@@ -5,12 +5,16 @@ export default {
   state: {
     employees: [],
     loadingError: false,
+    isLoading: false,
   },
   mutations: {
     setEmployees (state, employees) {
       state.employees = [...employees];
     },
-    setError(state) {
+    setIsLoading(state, value) {
+      state.isLoading = value;
+    },
+    setLoadingError(state) {
       state.loadingError = true;
     },
     pushAddedEmployee(state, newEmployee) {
@@ -32,13 +36,17 @@ export default {
   },
   actions: {
     getEmployees ({commit}) { 
+      commit('setIsLoading', true);
       return fetchEmployees()
         .then(response => {
           commit('setEmployees', response.results);
         })
         .catch(error => {
-          commit('setError', error);
+          commit('setLoadingError', error);
         })    
+        .finally(() => {
+          commit('setIsLoading', false);
+        });
     },
     saveAddedEmployee({commit}, newEmployee) {
       commit('pushAddedEmployee', newEmployee);

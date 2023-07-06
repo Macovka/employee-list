@@ -12,12 +12,7 @@
     <p v-if="loadingError">Oops, something went wrong.</p>
     <div v-else>
       <employee-form v-if="editing" />
-      <employees-table />
-      <img 
-        v-if="isLoading" 
-        src="https://i.imgur.com/JfPpwOA.gif" 
-        alt="loading..."
-      >   
+      <employees-table />  
     </div>   
   </div>
 </template>
@@ -32,11 +27,6 @@
       EmployeesTable,
       EmployeeForm,
     },
-    data() {
-      return {
-        isLoading: false,
-      }
-    },
     computed: {
       ...mapState({
         editing: state => state.editing,
@@ -50,9 +40,7 @@
       }),  
     },
     created() {
-      this.isLoading = true
       this.renderEmployees()
-        .then(() => this.isLoading = false)
     }
   }
 </script>
