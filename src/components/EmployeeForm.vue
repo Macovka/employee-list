@@ -84,13 +84,7 @@
           return this.newEmployee.name.first;
         },
         set(value) {
-          this.newEmployee = {
-            ...this.newEmployee,
-            name: {
-              ...this.newEmployee.name,
-              first: value
-            }
-          };
+          this.updateNestedProperty('name', 'first', value);
         }
       },
       lastName: {
@@ -98,13 +92,7 @@
           return this.newEmployee.name.last;
         },
         set(value) {
-          this.newEmployee = {
-            ...this.newEmployee,
-            name: {
-              ...this.newEmployee.name,
-              last: value
-            }
-          };
+          this.updateNestedProperty('name', 'last', value);
         }
       },
       experience: {
@@ -112,13 +100,7 @@
           return this.newEmployee.registered.age;
         },
         set(value) {
-          this.newEmployee = {
-            ...this.newEmployee,
-            registered: {
-              ...this.newEmployee.registered,
-              age: value
-            }
-          };
+          this.updateNestedProperty('registered', 'age', value);
         }
       },
       age: {
@@ -126,19 +108,32 @@
           return this.newEmployee.dob.age;
         },
         set(value) {
-          this.newEmployee = {
-            ...this.newEmployee,
-            dob: {
-              ...this.newEmployee.dob,
-              age: value
-            }
-          };
+          this.updateNestedProperty('dob', 'age', value);
         }
       },
     },
     methods: {
       ...mapActions('list', ['saveEditedEmployee', 'saveAddedEmployee']),
       ...mapActions('form', ['cancelEdit', 'closeModal']),
+      createNestedGetterSetter(propName) {
+        return {
+          get() {
+            return this.newEmployee[propName.first][propName.last];
+          },
+          set(value) {
+            this.updateNestedProperty(propName.first, propName.last, value);
+          }
+        };
+      },
+      updateNestedProperty(firstProp, lastProp, value) {
+        this.newEmployee = {
+          ...this.newEmployee,
+          [firstProp]: {
+            ...this.newEmployee[firstProp],
+            [lastProp]: value
+          }
+        };
+      },
       saveEmployee() {
         if (this.isInvalid) {
           this.$store.commit('form/setinputErrorValue', true);
