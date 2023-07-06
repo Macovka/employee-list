@@ -1,7 +1,7 @@
 <template>
   <div class="employee-list">
-    <div class="header-wrapper">
-      <h1 class="header">Employees List</h1>
+    <div class="employee-list__title-wrapper">
+      <h1 class="employee-list__title-wrapper__title">Employees List</h1>
       <base-button 
         v-if="!editing && !loadingError" 
         @click="addEmployee"
@@ -54,11 +54,14 @@
     width: 95%;
     max-width: 900px;
   }
-  .header-wrapper {
+  .employee-list__title-wrapper {
     display: flex;
-    justify-content: space-around;
-    height: 60px;
+    justify-content: space-between;
     align-items: center;
-    margin: 30px auto;
+    margin-bottom: 30px;
+  }
+
+  .employee-list__title-wrapper__title {
+    margin: 0;
   }
 </style>
