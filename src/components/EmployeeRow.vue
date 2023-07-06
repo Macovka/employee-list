@@ -1,5 +1,5 @@
 <template>
-  <tr>
+  <tr class="employee-row">
     <td>{{ index + 1 }}</td>
     <td>{{ employee.name.first }}</td>
     <td>{{ employee.name.last }}</td>
@@ -7,7 +7,7 @@
     <td>{{ employee.dob.age }} {{ setUnit(employee.dob.age) }}</td>
     <td>{{ employee.email }}</td>
     <td>
-      <div class="button-wrapper">
+      <div class="employee-row__button-wrapper">
         <base-button @click="editEmployee(employee)">Edit</base-button>
         <base-button @click="deleteEmployee(employee)" class="btn btn-danger">Delete</base-button>
       </div>   
@@ -41,16 +41,16 @@
 </script>
 
 <style scoped>
-  tr {
+  .employee-row {
     border: 1px solid #000;
   }
 
-  td {
+  .employee-row td {
     border: 1px solid #000;
     padding: 8px;
     text-align: left;
   }
-  .button-wrapper {
+  .employee-row__button-wrapper {
     display: flex;
     width: 100%;
     justify-content: space-around;

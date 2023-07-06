@@ -1,21 +1,20 @@
 <template>
-  <table class="table">
+  <table class="employees-table">
     <thead>
       <tr>
-        <th class="table__number">№</th>
-        <th class="table__firstname">First Name</th>
-        <th class="table__lastname">Last Name</th>
-        <th class="table__experience">Experience</th>
-        <th class="table__age">Age</th>
-        <th class="table__address">Email</th>
-        <th class="table__actions">Actions</th>
+        <th class="employees-table__number">№</th>
+        <th class="employees-table__firstname">First Name</th>
+        <th class="employees-table__lastname">Last Name</th>
+        <th class="employees-table__experience">Experience</th>
+        <th class="employees-table__age">Age</th>
+        <th class="employees-table__address">Email</th>
+        <th class="employees-table__actions">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr v-if="isLoading">
         <td colspan="7">
           <img 
-            class="spinner" 
             src="https://i.imgur.com/JfPpwOA.gif" 
             alt="loading..."
           >
@@ -28,7 +27,7 @@
         :index="index"
       />
       <tr>
-        <td colspan="7" class="table__total">Total: {{ employees.length }}</td>
+        <td colspan="7" class="employees-table__total">Total: {{ employees.length }}</td>
       </tr>
     </tbody>
   </table>
@@ -52,43 +51,43 @@
 </script>
 
 <style scoped>
-  .table {
+  .employees-table {
     border-collapse: collapse;
     width: 100%;
     padding: 20px;
     margin: auto;
   }
 
-  .table th {
+  .employees-table th {
     background-color: #f2f2f2;
     border: 1px solid #000;
     padding: 8px;
   }
-  .table td {
+  .employees-table td {
     border: 1px solid #000;
     padding: 8px;
   }
 
-  .table__number{
+  .employees-table__number{
     width: 16px;
   }
 
-  .table__firstname,
-  .table__lastname,
-  .table__experience,
-  .table__age {
+  .employees-table__firstname,
+  .employees-table__lastname,
+  .employees-table__experience,
+  .employees-table__age {
     width: 80px;
   }
 
-  .table__address {
+  .employees-table__address {
     width: 275px;
   }
 
-  .table__actions {
+  .employees-table__actions {
     width: 182px;
   }
 
-  table tbody .table__total {
+  table tbody .employees-table__total {
     text-align: right;
     padding-right: 40px;
     font-weight: bold;
