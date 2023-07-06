@@ -1,7 +1,7 @@
 <template>
   <div class="employee-list">
     <div class="employee-list__title-wrapper">
-      <h1 class="employee-list__title-wrapper__title">Employees List</h1>
+      <h1 class="employee-list__title">Employees List</h1>
       <base-button 
         v-if="!editing && !loadingError" 
         @click="addEmployee"
@@ -61,7 +61,7 @@
     margin-bottom: 30px;
   }
 
-  .employee-list__title-wrapper__title {
+  .employee-list__title {
     margin: 0;
   }
 </style>
