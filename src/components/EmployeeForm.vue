@@ -5,24 +5,24 @@
         <h2>{{ formTitle }}</h2>
         <div class="modal-container__inputs-wrapper">
           <base-input 
-            :class="{'err': hasErr && !newEmployee.name.first}"
-            v-model="newEmployee.name.first" 
+            :class="{'err': hasErr && !firstName}"
+            v-model="firstName" 
             placeholder="First Name" 
           />
           <base-input 
-            :class="{'err': hasErr && !newEmployee.name.last}"
-            v-model="newEmployee.name.last" 
+            :class="{'err': hasErr && !lastName}"
+            v-model="lastName" 
             placeholder="Last Name" 
           />
           <base-input 
-            :class="{'err': hasErr && (newEmployee.registered.age < 0 || newEmployee.registered.age === '')}"
-            v-model="newEmployee.registered.age" 
+            :class="{'err': hasErr && (experience < 0 || experience === '')}"
+            v-model="experience" 
             placeholder="Experience" 
             type="number"
           />
           <base-input 
-            :class="{'err': hasErr && (newEmployee.dob.age < 0 || newEmployee.dob.age === '')}"
-            v-model="newEmployee.dob.age" 
+            :class="{'err': hasErr && (age < 0 || age === '')}"
+            v-model="age" 
             placeholder="Age" 
             type="number"
           />
@@ -78,6 +78,62 @@
           this.newEmployee.dob.age === '' || 
           !this.newEmployee.email
         );
+      },
+      firstName: {
+        get() {
+          return this.newEmployee.name.first;
+        },
+        set(value) {
+          this.newEmployee = {
+            ...this.newEmployee,
+            name: {
+              ...this.newEmployee.name,
+              first: value
+            }
+          };
+        }
+      },
+      lastName: {
+        get() {
+          return this.newEmployee.name.last;
+        },
+        set(value) {
+          this.newEmployee = {
+            ...this.newEmployee,
+            name: {
+              ...this.newEmployee.name,
+              last: value
+            }
+          };
+        }
+      },
+      experience: {
+        get() {
+          return this.newEmployee.registered.age;
+        },
+        set(value) {
+          this.newEmployee = {
+            ...this.newEmployee,
+            registered: {
+              ...this.newEmployee.registered,
+              age: value
+            }
+          };
+        }
+      },
+      age: {
+        get() {
+          return this.newEmployee.dob.age;
+        },
+        set(value) {
+          this.newEmployee = {
+            ...this.newEmployee,
+            dob: {
+              ...this.newEmployee.dob,
+              age: value
+            }
+          };
+        }
       },
     },
     methods: {
