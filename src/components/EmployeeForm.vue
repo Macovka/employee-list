@@ -115,16 +115,6 @@
     methods: {
       ...mapActions('list', ['saveEditedEmployee', 'saveAddedEmployee']),
       ...mapActions('form', ['cancelEdit', 'closeModal']),
-      createNestedGetterSetter(propName) {
-        return {
-          get() {
-            return this.newEmployee[propName.first][propName.last];
-          },
-          set(value) {
-            this.updateNestedProperty(propName.first, propName.last, value);
-          }
-        };
-      },
       updateNestedProperty(firstProp, lastProp, value) {
         this.newEmployee = {
           ...this.newEmployee,
