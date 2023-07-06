@@ -3,8 +3,8 @@
     <td>{{ index + 1 }}</td>
     <td>{{ employee.name.first }}</td>
     <td>{{ employee.name.last }}</td>
-    <td>{{ employee.registered.age }} {{ unit(employee.registered.age ) }}</td>
-    <td>{{ employee.dob.age }} {{ unit(employee.dob.age) }}</td>
+    <td>{{ employee.registered.age }} {{ setUnit(employee.registered.age) }}</td>
+    <td>{{ employee.dob.age }} {{ setUnit(employee.dob.age) }}</td>
     <td>{{ employee.email }}</td>
     <td>
       <div class="button-wrapper">
@@ -33,8 +33,8 @@
       ...mapActions({
         editEmployee: 'form/editEmployee', 
         deleteEmployee: 'list/deleteEmployee'}),
-      unit(property) {
-        return property === 1 ? ' year' : ' years'
+      setUnit(value) {
+        return +value === 1 ? ' year' : ' years'
       },
     },
   };
