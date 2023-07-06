@@ -5,29 +5,29 @@
         <h2>{{ formTitle }}</h2>
         <div class="modal-container__inputs-wrapper">
           <base-input 
-            :class="{'err': hasErr && !firstName}"
+            :class="{'err': inputError && !firstName}"
             v-model="firstName" 
             placeholder="First Name" 
           />
           <base-input 
-            :class="{'err': hasErr && !lastName}"
+            :class="{'err': inputError && !lastName}"
             v-model="lastName" 
             placeholder="Last Name" 
           />
           <base-input 
-            :class="{'err': hasErr && (experience < 0 || experience === '')}"
+            :class="{'err': inputError && (experience < 0 || experience === '')}"
             v-model="experience" 
             placeholder="Experience" 
             type="number"
           />
           <base-input 
-            :class="{'err': hasErr && (age < 0 || age === '')}"
+            :class="{'err': inputError && (age < 0 || age === '')}"
             v-model="age" 
             placeholder="Age" 
             type="number"
           />
           <base-input 
-            :class="{'err': hasErr && !newEmployee.email}"
+            :class="{'err': inputError && !newEmployee.email}"
             v-model="newEmployee.email" 
             placeholder="Email" 
           />
@@ -65,7 +65,7 @@
     computed: {  
       ...mapState('form', {
         formTitle: state => state.formTitle,
-        hasErr: state => state.hasErr,
+        inputError: state => state.inputError,
         editingEmployee: state => state.editingEmployee,
       }),
       isInvalid() {
@@ -141,7 +141,7 @@
       ...mapActions('form', ['cancelEdit', 'closeModal']),
       saveEmployee() {
         if (this.isInvalid) {
-          this.$store.commit('form/setHasErrValue', true);
+          this.$store.commit('form/setinputErrorValue', true);
           return;
         }
         if (this.editingEmployee) {

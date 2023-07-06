@@ -3,18 +3,18 @@
     <div class="header-wrapper">
       <h1 class="header">Employees List</h1>
       <base-button 
-        v-if="!editing && !isError" 
+        v-if="!editing && !loadingError" 
         @click="addEmployee"
       >
         Add Employee
       </base-button>
     </div>
-    <p v-if="isError">Oops, something went wrong.</p>
+    <p v-if="loadingError">Oops, something went wrong.</p>
     <div v-else>
       <employee-form v-if="editing" />
       <employees-table />
       <img 
-        v-if="loading" 
+        v-if="isLoading" 
         src="https://i.imgur.com/JfPpwOA.gif" 
         alt="loading..."
       >   
@@ -34,13 +34,13 @@
     },
     data() {
       return {
-        loading: false,
+        isLoading: false,
       }
     },
     computed: {
       ...mapState({
         editing: state => state.editing,
-        isError: state => state.list.isError,
+        loadingError: state => state.list.loadingError,
       }),
     },
     methods: {
@@ -50,9 +50,9 @@
       }),  
     },
     created() {
-      this.loading = true
+      this.isLoading = true
       this.renderEmployees()
-        .then(() => this.loading = false)
+        .then(() => this.isLoading = false)
     }
   }
 </script>

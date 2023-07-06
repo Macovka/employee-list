@@ -3,11 +3,11 @@ export default {
   state: {
     editingEmployee: null,
     formTitle: '',
-    hasErr: false
+    inputError: false
   },
   mutations: {
-    setHasErrValue(state, value) {
-      state.hasErr = value;
+    setinputErrorValue(state, value) {
+      state.inputError = value;
     },
     setFormTitle(state, title) {
       state.formTitle = title;
@@ -28,13 +28,13 @@ export default {
       commit('setEditingEmployee', { ...currentEmployee });
     },
     cancelEdit({commit}) {
-      commit('setHasErrValue', false);
+      commit('setinputErrorValue', false);
       commit('setEditingValue', false, {root: true});
     },
     closeModal({commit}, event) {
       if (event.target === event.currentTarget) {
         commit('setEditingValue', false, {root: true});
-        commit('setHasErrValue', false);
+        commit('setinputErrorValue', false);
       }
     },
   }

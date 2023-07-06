@@ -4,14 +4,14 @@ export default {
   namespaced: true,
   state: {
     employees: [],
-    isError: false,
+    loadingError: false,
   },
   mutations: {
     setEmployees (state, employees) {
       state.employees = [...employees];
     },
     setError(state) {
-      state.isError = true;
+      state.loadingError = true;
     },
     pushAddedEmployee(state, newEmployee) {
       state.employees.push({
