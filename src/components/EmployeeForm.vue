@@ -34,7 +34,7 @@
         </div>
         <div class="modal__buttons-wrapper">
           <base-button @click="saveEmployee">Save</base-button>
-          <base-button class="btn btn-danger" @click="cancelEdit">Cancel</base-button>
+          <base-button class="base-button base-button_danger" @click="cancelEdit">Cancel</base-button>
         </div>
       </div>
     </div>

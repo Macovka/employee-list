@@ -9,7 +9,7 @@
     <td>
       <div class="employee-row__button-wrapper">
         <base-button @click="editEmployee(employee)">Edit</base-button>
-        <base-button @click="deleteEmployee(employee)" class="btn btn-danger">Delete</base-button>
+        <base-button @click="deleteEmployee(employee)" class="base-button base-button_danger">Delete</base-button>
       </div>   
     </td>
   </tr>
