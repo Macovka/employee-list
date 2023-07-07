@@ -1,38 +1,38 @@
 <template>
-  <div class="modal-mask">
-    <div class="modal-wrapper" @click="closeModal">
-      <div class="modal-container">
-        <h2>{{ formTitle }}</h2>
-        <div class="modal-container__inputs-wrapper">
+  <div class="employee-form">
+    <div class="employee-form__modal-wrapper" @click="closeModal">
+      <div class="modal">
+        <h2 class="modal__title">{{ formTitle }}</h2>
+        <div class="modal__inputs-wrapper">
           <base-input 
-            :class="{'err': inputError && !firstName}"
+            :class="{'base-input_error': inputError && !firstName}"
             v-model="firstName" 
             placeholder="First Name" 
           />
           <base-input 
-            :class="{'err': inputError && !lastName}"
+            :class="{'base-input_error': inputError && !lastName}"
             v-model="lastName" 
             placeholder="Last Name" 
           />
           <base-input 
-            :class="{'err': inputError && (experience < 0 || experience === '')}"
+            :class="{'base-input_error': inputError && (experience < 0 || experience === '')}"
             v-model="experience" 
             placeholder="Experience" 
             type="number"
           />
           <base-input 
-            :class="{'err': inputError && (age < 0 || age === '')}"
+            :class="{'base-input_error': inputError && (age < 0 || age === '')}"
             v-model="age" 
             placeholder="Age" 
             type="number"
           />
           <base-input 
-            :class="{'err': inputError && !newEmployee.email}"
+            :class="{'base-input_error': inputError && !newEmployee.email}"
             v-model="newEmployee.email" 
             placeholder="Email" 
           />
         </div>
-        <div class="modal-container__buttons-wrapper">
+        <div class="modal__buttons-wrapper">
           <base-button @click="saveEmployee">Save</base-button>
           <base-button class="btn btn-danger" @click="cancelEdit">Cancel</base-button>
         </div>
@@ -145,7 +145,7 @@
 </script>
 
 <style scoped>
-  .modal-mask {
+  .employee-form {
     position: fixed;
     z-index: 9998;
     top: 0;
@@ -157,15 +157,15 @@
     transition: opacity 0.3s ease;
   }
 
-  .modal-wrapper {
+  .employee-form__modal-wrapper {
     display: table-cell;
     vertical-align: middle;
   }
 
-  .modal-container {
+  .modal {
     width: 300px;
     margin: 0px auto;
-    padding: 20px 30px;
+    padding: 30px;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
@@ -173,16 +173,19 @@
     font-family: Helvetica, Arial, sans-serif;
   }
 
-  .modal-container__inputs-wrapper,
-  .modal-container__buttons-wrapper {
+  .modal__title {
+    margin: 0;
+  }
+
+  .modal__inputs-wrapper {
     margin: 20px auto;
   }
 
-  .modal-container__inputs-wrapper input {
+  .modal__inputs-wrapper input {
     margin: 8px auto;
   }
 
-  .modal-container__buttons-wrapper {
+  .modal__buttons-wrapper {
     display: flex;
     justify-content: space-around;
   }
