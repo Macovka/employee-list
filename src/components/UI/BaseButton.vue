@@ -40,25 +40,25 @@
     cursor: pointer;
     border-radius: 0.25rem;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  }
+  
+    &_primary {
+      background-color: $primary-button;
+      border-color: $primary-button;
 
-  .base-button_primary {
-    background-color: $primary-button;
-    border-color: $primary-button;
-  }
+        &:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+    }
 
-  .base-button_primary:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
+    &_danger {
+      background-color: $danger-button;
+      border-color: $danger-button;
 
-  .base-button_danger {
-    background-color: $danger-button;
-    border-color: $danger-button;
-  }
-
-  .base-button_danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-  }
+      &:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+      }
+    } 
+  } 
 </style>

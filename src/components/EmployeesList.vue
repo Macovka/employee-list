@@ -54,14 +54,14 @@
     width: 100%;
     max-width: 900px;
 
-    .employee-list__title-wrapper {
+    &__title-wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: $indent;
     }
 
-    .employee-list__title {
+    &__title {
       margin: 0;
     }
   }

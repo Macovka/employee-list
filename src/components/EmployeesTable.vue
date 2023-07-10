@@ -64,31 +64,29 @@
       @extend %cell-shared;
     }
 
-    .employees-table__number{
+    &__number{
       width: 16px / 900px * 100%;
     }
 
-    .employees-table__firstname,
-    .employees-table__lastname,
-    .employees-table__experience,
-    .employees-table__age {
+    &__firstname,
+    &__lastname,
+    &__experience,
+    &__age {
       width: 80px / 900px * 100%;
     }
 
-    .employees-table__address {
+    &__address {
       width: 275px / 900px * 100%;
     }
 
-    .employees-table__actions {
+    &__actions {
       width: 182px / 900px * 100%;
     }
 
-    tbody {
-      .employees-table__total {
-        text-align: right;
-        padding-right: 40px;
-        font-weight: bold;
-      }
-    } 
+    tbody  &__total {
+      text-align: right;
+      padding-right: 40px;
+      font-weight: bold;
+    }
   }
 </style>

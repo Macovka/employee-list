@@ -53,16 +53,16 @@
     background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
-  }
 
-  .base-input:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
-  }
+    &:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
+    }
 
-  .base-input_error {
-    border-color: #CC0000;
-    box-shadow: 0 0 0.2rem rgba(255, 0, 0, 0.25);
+    &_error {
+      border-color: #CC0000;
+      box-shadow: 0 0 0.2rem rgba(255, 0, 0, 0.25);
+    }
   }
 </style>

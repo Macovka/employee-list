@@ -156,7 +156,7 @@
     display: table;
     transition: opacity 0.3s ease;
 
-    .employee-form__modal-wrapper {
+    &__modal-wrapper {
       display: table-cell;
       vertical-align: middle;
     }
@@ -171,11 +171,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
 
-    .modal__title {
+    &__title {
       margin: 0;
     }
 
-    .modal__inputs-wrapper {
+    &__inputs-wrapper {
       margin: 20px auto;
 
       input {
@@ -183,7 +183,7 @@
       }
     }
 
-    .modal__buttons-wrapper {
+    &__buttons-wrapper {
       display: flex;
       justify-content: space-around;
     }

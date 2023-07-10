@@ -51,11 +51,11 @@
       padding: 8px;
       text-align: left;
     }
-  }
 
-  .employee-row__button-wrapper {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
+    &__button-wrapper {
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+    }
   }
 </style>
