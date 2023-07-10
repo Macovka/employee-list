@@ -26,7 +26,7 @@
       },
       classes: {
         type: String,
-        default: '',
+        default: 'base-input',
       },
     },
     methods: {
@@ -40,8 +40,8 @@
   };
 </script>
 
-<style scoped>
-  input {
+<style lang="scss" scoped>
+  .base-input {
     display: block;
     width: 100%;
     margin: auto;
@@ -54,15 +54,14 @@
     border-radius: 0.25rem;
   }
 
-  input:focus {
-    color: #495057;
-    background-color: #fff;
+  .base-input:focus {
     border-color: #80bdff;
     outline: 0;
     box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
   }
 
   .base-input_error {
-    border-color: red;
+    border-color: #CC0000;
+    box-shadow: 0 0 0.2rem rgba(255, 0, 0, 0.25);
   }
 </style>

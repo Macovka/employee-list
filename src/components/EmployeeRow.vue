@@ -40,16 +40,19 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  $border: 1px solid #000;
+
   .employee-row {
-    border: 1px solid #000;
+    border: $border;
+
+    td {
+      border: $border;
+      padding: 8px;
+      text-align: left;
+    }
   }
 
-  .employee-row td {
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
-  }
   .employee-row__button-wrapper {
     display: flex;
     width: 100%;

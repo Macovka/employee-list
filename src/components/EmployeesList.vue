@@ -45,23 +45,24 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  $indent: 30px;
   .employee-list {
-    padding: 30px;
-    margin: auto;
+    padding: $indent;
     border-radius: 3px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-    width: 95%;
+    width: 100%;
     max-width: 900px;
-  }
-  .employee-list__title-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
 
-  .employee-list__title {
-    margin: 0;
+    .employee-list__title-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $indent;
+    }
+
+    .employee-list__title {
+      margin: 0;
+    }
   }
 </style>

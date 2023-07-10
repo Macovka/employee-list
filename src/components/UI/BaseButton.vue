@@ -23,8 +23,12 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  $primary-button: #007bff;
+  $danger-button: #dc3545;
+
   .base-button {
+    color: #fff;
     display: inline-block;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -38,25 +42,21 @@
   }
 
   .base-button_primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: $primary-button;
+    border-color: $primary-button;
   }
 
   .base-button_primary:hover {
-    color: #fff;
     background-color: #0069d9;
     border-color: #0062cc;
   }
 
   .base-button_danger {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
+    background-color: $danger-button;
+    border-color: $danger-button;
   }
 
   .base-button_danger:hover {
-    color: #fff;
     background-color: #c82333;
     border-color: #bd2130;
   }

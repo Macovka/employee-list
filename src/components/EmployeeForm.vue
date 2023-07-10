@@ -144,7 +144,7 @@
   };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .employee-form {
     position: fixed;
     z-index: 9998;
@@ -155,11 +155,11 @@
     background-color: rgba(0, 0, 0, 0.5);
     display: table;
     transition: opacity 0.3s ease;
-  }
 
-  .employee-form__modal-wrapper {
-    display: table-cell;
-    vertical-align: middle;
+    .employee-form__modal-wrapper {
+      display: table-cell;
+      vertical-align: middle;
+    }
   }
 
   .modal {
@@ -170,23 +170,22 @@
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
-    font-family: Helvetica, Arial, sans-serif;
-  }
 
-  .modal__title {
-    margin: 0;
-  }
+    .modal__title {
+      margin: 0;
+    }
 
-  .modal__inputs-wrapper {
-    margin: 20px auto;
-  }
+    .modal__inputs-wrapper {
+      margin: 20px auto;
 
-  .modal__inputs-wrapper input {
-    margin: 8px auto;
-  }
+      input {
+        margin: 8px auto;
+      }
+    }
 
-  .modal__buttons-wrapper {
-    display: flex;
-    justify-content: space-around;
+    .modal__buttons-wrapper {
+      display: flex;
+      justify-content: space-around;
+    }
   }
 </style>
