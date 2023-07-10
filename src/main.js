@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import BaseInput from "./components/UI/BaseInput.vue";
-import BaseButton from "./components/UI/BaseButton.vue";
-import store from "./store/index";
+import components from './components/UI'
+import store from './store/index';
 
 const app = createApp(App);
 
-app.component('BaseInput', BaseInput);
-app.component('BaseButton', BaseButton);
+components.forEach(component => {
+  app.component(component.name, component)
+})
+
 app.use(store);
-app.mount("#app");
+app.mount('#app');

@@ -13,14 +13,18 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px auto;
-  box-sizing: border-box;
-}
+<style lang="scss">
+  $font-stack: Avenir, Helvetica, Arial, sans-serif;
+  $primary-color: #2c3e50;
+
+  #app {
+    font-family: $font-stack;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: $primary-color;
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+  }
 </style>

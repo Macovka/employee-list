@@ -1,25 +1,30 @@
 <template>
-  <table class="table">
+  <table class="employees-table">
     <thead>
       <tr>
-        <th class="table__number">№</th>
-        <th class="table__firstname">First Name</th>
-        <th class="table__lastname">Last Name</th>
-        <th class="table__experience">Experience</th>
-        <th class="table__age">Age</th>
-        <th class="table__address">Address</th>
-        <th class="table__actions">Actions</th>
+        <th class="employees-table__number">№</th>
+        <th class="employees-table__firstname">First Name</th>
+        <th class="employees-table__lastname">Last Name</th>
+        <th class="employees-table__experience">Experience</th>
+        <th class="employees-table__age">Age</th>
+        <th class="employees-table__address">Email</th>
+        <th class="employees-table__actions">Actions</th>
       </tr>
     </thead>
     <tbody>
+      <tr v-if="isLoading">
+        <td colspan="7">
+          <base-spinner />
+        </td>
+      </tr> 
       <employee-row
         v-for="(employee, index) in employees"
-        :key="employee.id"
+        :key="employee.id.value"
         :employee="employee"
         :index="index"
       />
       <tr>
-        <td colspan="7" class="table__total">Total: {{ employees.length }}</td>
+        <td colspan="7" class="employees-table__total">Total: {{ employees.length }}</td>
       </tr>
     </tbody>
   </table>
@@ -27,60 +32,61 @@
 
 <script>
   import EmployeeRow from './EmployeeRow.vue';
+  import { mapState } from 'vuex';
 
   export default {
     components: {
       EmployeeRow,
     },
     computed: {
-      employees() {
-        return this.$store.state.list.employees
-      }
+      ...mapState('list', {
+        employees: state => state.employees,
+        isLoading: state => state.isLoading,
+      }),
     },
   };
 </script>
 
-<style scoped>
-  .table {
+<style lang="scss" scoped>
+  %cell-shared {
+    border: 1px solid #000;
+    padding: 8px;
+  }
+  .employees-table {
     border-collapse: collapse;
-    width: 100%;
-    padding: 20px;
-    margin: auto;
-  }
 
-  .table th {
-    background-color: #f2f2f2;
-    border: 1px solid #000;
-    padding: 8px;
-  }
-  .table td {
-    border: 1px solid #000;
-    padding: 8px;
-    text-align: left;
-  }
+    th {
+      @extend %cell-shared;
+      background-color: #f2f2f2;
+    }
 
-  .table__number{
-    width: 16px;
-  }
+    td {
+      @extend %cell-shared;
+    }
 
-  .table__firstname,
-  .table__lastname,
-  .table__experience,
-  .table__age {
-    width: 80px;
-  }
+    &__number{
+      width: 16px / 900px * 100%;
+    }
 
-  .table__address {
-    width: 275px;
-  }
+    &__firstname,
+    &__lastname,
+    &__experience,
+    &__age {
+      width: 80px / 900px * 100%;
+    }
 
-  .table__actions {
-    width: 182px;
-  }
+    &__address {
+      width: 275px / 900px * 100%;
+    }
 
-  table tbody .table__total {
-    text-align: right;
-    padding-right: 40px;
-    font-weight: bold;
+    &__actions {
+      width: 182px / 900px * 100%;
+    }
+
+    tbody  &__total {
+      text-align: right;
+      padding-right: 40px;
+      font-weight: bold;
+    }
   }
 </style>

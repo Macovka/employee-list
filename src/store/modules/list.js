@@ -1,13 +1,21 @@
-import api from '../../api/api'
+import { fetchEmployees } from '../../api/api'
 
 export default {
   namespaced: true,
   state: {
     employees: [],
+    loadingError: false,
+    isLoading: false,
   },
   mutations: {
     setEmployees (state, employees) {
       state.employees = [...employees];
+    },
+    setIsLoading(state, value) {
+      state.isLoading = value;
+    },
+    setLoadingError(state) {
+      state.loadingError = true;
     },
     pushAddedEmployee(state, newEmployee) {
       state.employees.push({
@@ -27,13 +35,18 @@ export default {
     },
   },
   actions: {
-    fetchEmployees ({commit}) {
-      return new Promise((resolve) => {
-        api.getEmployees(employees => {
-          commit('setEmployees', employees)
-          resolve()
+    getEmployees ({commit}) { 
+      commit('setIsLoading', true);
+      return fetchEmployees()
+        .then(response => {
+          commit('setEmployees', response.results);
         })
-      })      
+        .catch(error => {
+          commit('setLoadingError', error);
+        })    
+        .finally(() => {
+          commit('setIsLoading', false);
+        });
     },
     saveAddedEmployee({commit}, newEmployee) {
       commit('pushAddedEmployee', newEmployee);

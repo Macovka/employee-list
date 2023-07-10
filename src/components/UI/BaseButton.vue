@@ -6,11 +6,8 @@
 
 <script>
   export default {
+    name: 'base-button',
     props: {
-      type: {
-        type: String,
-        default: 'button',
-      },
       variant: {
         type: String,
         default: 'primary',
@@ -19,16 +16,20 @@
     computed: {
       classes() {
         return [
-          'btn',
-          `btn-${this.variant}`,
+          'base-button',
+          `base-button_${this.variant}`,
         ];
       },
     },
   };
 </script>
 
-<style scoped>
-  .btn {
+<style lang="scss" scoped>
+  $primary-button: #007bff;
+  $danger-button: #dc3545;
+
+  .base-button {
+    color: #fff;
     display: inline-block;
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -39,29 +40,25 @@
     cursor: pointer;
     border-radius: 0.25rem;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  }
+  
+    &_primary {
+      background-color: $primary-button;
+      border-color: $primary-button;
 
-  .btn-primary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-  }
+        &:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+      }
+    }
 
-  .btn-primary:hover {
-    color: #fff;
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
+    &_danger {
+      background-color: $danger-button;
+      border-color: $danger-button;
 
-  .btn-danger {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
-  }
-
-  .btn-danger:hover {
-    color: #fff;
-    background-color: #c82333;
-    border-color: #bd2130;
-  }
+      &:hover {
+        background-color: #c82333;
+        border-color: #bd2130;
+      }
+    } 
+  } 
 </style>

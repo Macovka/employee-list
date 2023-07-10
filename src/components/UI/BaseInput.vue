@@ -11,6 +11,7 @@
 
 <script>
  export default {
+    name: 'base-input',
     props: {
       type: {
         type: String,
@@ -26,7 +27,7 @@
       },
       classes: {
         type: String,
-        default: '',
+        default: 'base-input',
       },
     },
     methods: {
@@ -34,14 +35,14 @@
         this.$emit("update:modelValue", event.target.value);
       },
       onFocus() {
-        this.$store.commit('form/setHasErrValue', false);
+        this.$store.commit('form/setinputErrorValue', false);
       }
     }
   };
 </script>
 
-<style scoped>
-  input {
+<style lang="scss" scoped>
+  .base-input {
     display: block;
     width: 100%;
     margin: auto;
@@ -52,17 +53,16 @@
     background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: 0.25rem;
-  }
 
-  input:focus {
-    color: #495057;
-    background-color: #fff;
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
-  }
+    &:focus {
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0  0 0.2rem rgba(0, 123, 255, 0.25);
+    }
 
-  .err {
-    border-color: red;
+    &_error {
+      border-color: #CC0000;
+      box-shadow: 0 0 0.2rem rgba(255, 0, 0, 0.25);
+    }
   }
 </style>
