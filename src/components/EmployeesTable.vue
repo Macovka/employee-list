@@ -14,7 +14,7 @@
     <tbody>
       <tr v-if="isLoading">
         <td colspan="7">
-          <div class="spinner"></div>
+          <base-spinner />
         </td>
       </tr> 
       <employee-row
@@ -91,24 +91,4 @@
       }
     } 
   }
-  .spinner {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border-top: 4px solid #ccc;
-    border-right: 4px solid #ccc;
-    border-bottom: 4px solid #ccc;
-    border-left: 4px solid #777;
-    animation: spin 1s linear infinite;
-    margin:0 auto;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  } 
 </style>

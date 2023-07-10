@@ -6,6 +6,7 @@
 
 <script>
   export default {
+    name: 'base-button',
     props: {
       variant: {
         type: String,
