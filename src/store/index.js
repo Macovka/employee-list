@@ -8,12 +8,13 @@ const store = createStore({
     form
   },
   state: { 
-    editing: false,
+    editing: false, // Indicates if user clicked "Edit" buuton
   },
   getters: { 
     
   },
-  mutations: { 
+  mutations: {
+    // Sets the value of 'editing' in the state 
     setEditingValue(state, value) {
       state.editing = value;
     },

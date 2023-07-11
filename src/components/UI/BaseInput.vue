@@ -31,9 +31,11 @@
       },
     },
     methods: {
+      // updates the input value and emits an event with the updated value
       updateInput(event) {
         this.$emit("update:modelValue", event.target.value);
       },
+      // resets the input error flag in the Vuex store to false if focus event happened
       onFocus() {
         this.$store.commit('form/setinputErrorValue', false);
       }

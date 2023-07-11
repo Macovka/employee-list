@@ -5,6 +5,7 @@ import store from './store/index';
 
 const app = createApp(App);
 
+// Register each component from the components array globally using its name as the component tag
 components.forEach(component => {
   app.component(component.name, component)
 })

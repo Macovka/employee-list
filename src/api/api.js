@@ -1,2 +1,2 @@
-export const fetchEmployees = () => fetch("https://randomuser.me/api/?results=5")
-  .then(response => response.json());
+export const fetchEmployees = () => fetch("https://randomuser.me/api/?results=5") // Fetches data from the specified URL
+  .then(response => response.json()); // Converts the response to JSON format and returns it

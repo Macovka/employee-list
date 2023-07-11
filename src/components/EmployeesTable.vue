@@ -2,6 +2,7 @@
   <table class="employees-table">
     <thead>
       <tr>
+        <!-- Columns titles -->
         <th class="employees-table__number">№</th>
         <th class="employees-table__firstname">First Name</th>
         <th class="employees-table__lastname">Last Name</th>
@@ -12,17 +13,20 @@
       </tr>
     </thead>
     <tbody>
+      <!-- Display a loading spinner if data is still loading -->
       <tr v-if="isLoading">
         <td colspan="7">
           <base-spinner />
         </td>
       </tr> 
+      <!-- Render each employee row -->
       <employee-row
         v-for="(employee, index) in employees"
         :key="employee.id.value"
         :employee="employee"
         :index="index"
       />
+      <!-- Display the total number of employees -->
       <tr>
         <td colspan="7" class="employees-table__total">Total: {{ employees.length }}</td>
       </tr>
@@ -40,8 +44,8 @@
     },
     computed: {
       ...mapState('list', {
-        employees: state => state.employees,
-        isLoading: state => state.isLoading,
+        employees: state => state.employees, // Get the employees array from Vuex store
+        isLoading: state => state.isLoading, // Get the loading state from Vuex store
       }),
     },
   };

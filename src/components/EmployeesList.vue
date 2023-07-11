@@ -1,5 +1,6 @@
 <template>
   <div class="employee-list">
+    <!-- Title and "Add Employee" button -->
     <div class="employee-list__title-wrapper">
       <h1 class="employee-list__title">Employees List</h1>
       <base-button 
@@ -9,9 +10,12 @@
         Add Employee
       </base-button>
     </div>
+    <!-- Error message if loading fails -->
     <p v-if="loadingError">Oops, something went wrong.</p>
     <div v-else>
-      <employee-form v-if="editing" />
+      <!-- Render the employee form when in editing mode -->
+      <employee-form v-if="editing" /> 
+      <!-- Render the employees table -->
       <employees-table />  
     </div>   
   </div>
@@ -29,18 +33,18 @@
     },
     computed: {
       ...mapState({
-        editing: state => state.editing,
-        loadingError: state => state.list.loadingError,
+        editing: state => state.editing, 
+        loadingError: state => state.list.loadingError, 
       }),
     },
     methods: {
       ...mapActions({
-        addEmployee: 'form/addEmployee', 
-        renderEmployees: 'list/getEmployees'
+        addEmployee: 'form/addEmployee',  
+        renderEmployees: 'list/getEmployees' 
       }),  
     },
     created() {
-      this.renderEmployees()
+      this.renderEmployees(); // Render employees when the component is created
     }
   }
 </script>

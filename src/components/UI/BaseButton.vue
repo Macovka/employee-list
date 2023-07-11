@@ -16,8 +16,8 @@
     computed: {
       classes() {
         return [
-          'base-button',
-          `base-button_${this.variant}`,
+          'base-button',                 // Base class for the button
+          `base-button_${this.variant}`, // Variant-specific class based on the 'variant' prop
         ];
       },
     },
@@ -25,8 +25,9 @@
 </script>
 
 <style lang="scss" scoped>
-  $primary-button: #007bff;
-  $danger-button: #dc3545;
+  $primary-button: #007bff; // Color variable for primary button
+  $danger-button: #dc3545; // Color variable for danger button
+
 
   .base-button {
     color: #fff;
